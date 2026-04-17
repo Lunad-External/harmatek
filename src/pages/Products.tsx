@@ -7,14 +7,24 @@ import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 import HeroSlider from "@/components/HeroSlider";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { products } from "@/data/products";
 
 const PRODUCTS_PER_PAGE = 21;
 const PRIORITY_BRANDS = ["siemens", "schneider"] as const;
 const PRIORITY_PAGES = 3; // first N pages reserved for priority brands
+const ALL_BRANDS = "__ALL__";
+const UNBRANDED = "__UNBRANDED__";
 
 const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedBrand, setSelectedBrand] = useState<string>(ALL_BRANDS);
 
   const orderedProducts = useMemo(() => {
     const isPriority = (title: string) => {
@@ -34,14 +44,39 @@ const Products = () => {
     return [...priorityHead, ...other, ...priorityTail];
   }, []);
 
+  const availableBrands = useMemo(() => {
+    const brands = Array.from(
+      new Set(
+        orderedProducts
+          .map((product) => product.brand.trim())
+          .filter((brand) => brand.length > 0),
+      ),
+    );
+
+    return brands.sort((a, b) => a.localeCompare(b));
+  }, [orderedProducts]);
+
+  const filteredProducts = useMemo(() => {
+    if (selectedBrand === ALL_BRANDS) {
+      return orderedProducts;
+    }
+
+    if (selectedBrand === UNBRANDED) {
+      return orderedProducts.filter((product) => product.brand.trim() === "");
+    }
+
+    return orderedProducts.filter((product) => product.brand.trim() === selectedBrand);
+  }, [orderedProducts, selectedBrand]);
+
   // Calculate pagination
-  const totalProducts = orderedProducts.length;
+  const totalProducts = filteredProducts.length;
   const totalPages = Math.ceil(totalProducts / PRODUCTS_PER_PAGE);
+  const displayTotalPages = Math.max(totalPages, 1);
   
   const paginatedProducts = useMemo(() => {
     const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
-    return orderedProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
-  }, [currentPage, orderedProducts]);
+    return filteredProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
+  }, [currentPage, filteredProducts]);
 
   // Generate page numbers to display
   const getPageNumbers = () => {
@@ -75,8 +110,14 @@ const Products = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const handleBrandChange = (brand: string) => {
+    setSelectedBrand(brand);
+    setCurrentPage(1);
+  };
+
   const startIndex = (currentPage - 1) * PRODUCTS_PER_PAGE;
   const endIndex = Math.min(startIndex + PRODUCTS_PER_PAGE, totalProducts);
+  const displayStart = totalProducts === 0 ? 0 : startIndex + 1;
 
   return (
     <>
@@ -110,13 +151,34 @@ const Products = () => {
           <div className="container mx-auto px-4 lg:px-8 mb-8">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-4 px-6 bg-muted/50 rounded-lg">
               <p className="text-muted-foreground">
-                Showing <span className="font-semibold text-foreground">{startIndex + 1}-{endIndex}</span> of{" "}
+                Showing <span className="font-semibold text-foreground">{displayStart}-{endIndex}</span> of{" "}
                 <span className="font-semibold text-foreground">{totalProducts}</span> products
               </p>
-              <p className="text-sm text-muted-foreground">
-                Page <span className="font-semibold text-foreground">{currentPage}</span> of{" "}
-                <span className="font-semibold text-foreground">{totalPages}</span>
-              </p>
+              <div className="flex flex-col sm:flex-row items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <label className="text-sm text-muted-foreground">
+                    Brand
+                  </label>
+                  <Select value={selectedBrand} onValueChange={handleBrandChange}>
+                    <SelectTrigger className="h-9 min-w-[180px]">
+                      <SelectValue placeholder="All Brands" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value={ALL_BRANDS}>All Brands</SelectItem>
+                      <SelectItem value={UNBRANDED}>Unbranded</SelectItem>
+                      {availableBrands.map((brand) => (
+                        <SelectItem key={brand} value={brand}>
+                          {brand}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  Page <span className="font-semibold text-foreground">{currentPage}</span> of{" "}
+                  <span className="font-semibold text-foreground">{displayTotalPages}</span>
+                </p>
+              </div>
             </div>
           </div>
 
@@ -127,7 +189,7 @@ const Products = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.3 }}
-              key={currentPage}
+              key={`${selectedBrand}-${currentPage}`}
             >
               {paginatedProducts.map((product, index) => (
                 <ProductCard 
