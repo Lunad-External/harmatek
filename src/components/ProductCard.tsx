@@ -32,14 +32,14 @@ const ProductCard = ({
       {/* Image Container */}
       <div className="relative h-64 overflow-hidden bg-muted">
         <motion.img
-          src={imageUrl || "/placeholder-product.png"}
+          src={imageUrl || `${import.meta.env.BASE_URL}placeholder-product.png`}
           alt={title}
           className="w-full h-full object-contain"
           whileHover={{ scale: 1.08 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           onError={(e) => {
             // Fallback if image fails to load
-            (e.target as HTMLImageElement).src = "/placeholder-product.png";
+            (e.target as HTMLImageElement).src = `${import.meta.env.BASE_URL}placeholder-product.png`;
           }}
         />
         {/* Overlay on hover */}
