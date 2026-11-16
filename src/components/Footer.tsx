@@ -12,7 +12,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="md:col-span-2">
             <motion.a
-              href="/"
+              href={`${import.meta.env.BASE_URL}`}
               className="flex items-center gap-3 mb-4"
               whileHover={{ scale: 1.02 }}
             >
@@ -74,11 +74,14 @@ const Footer = () => {
                 <li key={link}>
                   <a
                     href={
-                      isBrochure
-                        ? "/brochures"
+                      import.meta.env.BASE_URL +
+                      (isBrochure
+                        ? "brochures"
                         : link === "About"
-                        ? "/about-us"
-                        : `/${link.toLowerCase()}`
+                        ? "about-us"
+                        : link === "Home"
+                        ? ""
+                        : link.toLowerCase())
                     }
                     
                     className="text-muted-foreground hover:text-primary transition-colors"
