@@ -1,5 +1,7 @@
 # HarmaTek website — GitHub Pages
 
+Live site: https://lunad-external.github.io/harmatek/
+
 ## Publish
 1. Create a GitHub repository (or use an existing one).
 2. Upload **everything inside this folder** to the repository root (keep the folder structure, including `.nojekyll`).
