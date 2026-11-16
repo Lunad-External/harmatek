@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Brochures | HarmaTek</title>
+<meta name="description" content="Learn about Bright Solution Company (HarmaTek) - Leading industrial services and electronics maintenance provider in KSA.">
+<link rel="icon" href="public/favicon.ico">
+<script src="cms.js"></script>
+<script src="i18n.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;border:0 solid #dbe3ee}
+html{scroll-behavior:smooth;line-height:1.5}
+body{margin:0;background:#ffffff;color:#0f1f33;font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+h1,h2,h3,h4,h5,h6{font-family:'Space Grotesk',sans-serif;margin:0;font-size:inherit;font-weight:inherit}
+p,ul{margin:0;padding:0}ul{list-style:none}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}a:hover{color:#014995}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #ffffff; position: relative; overflow: hidden;">
+  <dc-import name="Header" hint-size="100%,120px"></dc-import>
+  <main style="position: relative; padding: 136px 0 64px;">
+    <div style="position: absolute; top: 160px; left: 0; width: 128px; height: 256px; background: #014995; transform: translateX(-64px) skewY(-12deg); z-index: 0;"></div>
+    <div style="position: absolute; bottom: 0; right: 0; width: 33.333%; height: 192px; background: #014995; clip-path: polygon(100% 0, 0% 100%, 100% 100%); z-index: 0;"></div>
+    <div style="position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
+      <h1 style="font-size: {{ h1Size }}; line-height: {{ h1Lh }}; font-weight: 700; text-align: center; color: #0f1f33; margin-bottom: 48px;"><span data-cms="brochures.titleA">Download</span> <span data-cms="brochures.titleB" style="color: #014995;">our brochures</span></h1>
+      <div style="display: grid; grid-template-columns: {{ cols }}; gap: 32px; align-items: start; max-width: 1152px; margin: 0 auto;">
+        <sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ brochures }}" as="b" hint-placeholder-count="0">
+          <div onMouseEnter="{{ b.enter }}" onMouseLeave="{{ b.leave }}" style="border-radius: 12px; overflow: hidden; width: 100%; position: relative; padding-bottom: 8px; border: 2px solid {{ b.border }}; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);">
+            <div role="img" aria-label="{{ b.title }}" style="width: 100%; height: 256px; border-radius: 12px; transition: transform 0.5s; transform: {{ b.scale }}; background-image: url('{{ b.image }}'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+            <p data-ar="{{ b.title_ar }}" style="color: #0f1f33; margin-top: 8px; text-align: center; font-size: 18px; line-height: 28px; font-weight: 600; padding: 8px;">{{ b.title }}</p>
+            <div style="display: flex; justify-content: center; align-items: center;">
+              <a href="{{ b.download }}" download="" target="_blank" style="margin-top: 8px; width: 75%; color: #ffffff; background: #014995; text-align: center; padding: 8px 0; border-radius: 12px; display: inline-flex; justify-content: center; align-items: center;" style-hover="color: #ffffff;">Download</a>
+            </div>
+          </div>
+        </sc-for></sc-if>
+      </div>
+      <div style="position: relative; max-width: 1152px; margin: 48px auto 80px;">
+        <div style="position: absolute; left: -80px; top: 0; width: 256px; height: 256px; background: #014995; border-radius: 9999px; opacity: 0.1; filter: blur(24px); z-index: -10;"></div>
+      </div>
+    </div>
+  </main>
+  <dc-import name="Footer" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: window.innerWidth, hov: -1 };
+  componentDidMount() {
+    if (!window.HT_CMS) this.cmsPoll = setInterval(() => { if (window.HT_CMS) { clearInterval(this.cmsPoll); this.forceUpdate(); } }, 30);
+    this.onCms = () => this.forceUpdate(); window.addEventListener('ht-cms', this.onCms);
+this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  renderVals() {
+    const { w, hov } = this.state;
+    const md = w >= 768;
+    const base = 'public/';
+    const data = [
+      ['Electronics Equipment', 'electric-equipment.jpg', 'electric-equipment.pdf'],
+      ['General Profile', 'general-brochure.jpg', 'general-brochure.pdf'],
+      ['Lab Repair Services', 'repair-lab.jpg', 'repair-lab.pdf'],
+    ];
+    return {
+      ready_: !!window.HT_CMS,
+      pad: md ? '32px' : '16px',
+      h1Size: md ? '48px' : '36px',
+      h1Lh: md ? '1' : '40px',
+      cols: md ? 'repeat(3, minmax(0, 1fr))' : 'minmax(0, 1fr)',
+      brochures: ((window.HT_CMS && window.HT_CMS.get('brochures.items')) || []).map((it, i) => ({
+        title: it.title, title_ar: it.title_ar, image: it.image, download: it.pdf,
+        border: hov === i ? '#014995' : '#4b5563',
+        scale: hov === i ? 'scale(1.05)' : 'scale(1)',
+        enter: () => this.setState({ hov: i }), leave: () => this.setState({ hov: -1 }),
+      })),
+    };
+  }
+}
+</script>
+</body>
+</html>

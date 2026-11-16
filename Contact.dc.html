@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Contact Us | HarmaTek</title>
+<meta name="description" content="Contact HarmaTek (Bright Solution Company) for industrial machinery maintenance and electronic cards installation. Riyadh, KSA.">
+<link rel="icon" href="public/favicon.ico">
+<script src="cms.js"></script>
+<script src="i18n.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;border:0 solid #dbe3ee}
+html{scroll-behavior:smooth;line-height:1.5}
+body{margin:0;background:#ffffff;color:#0f1f33;font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+h1,h2,h3,h4,h5,h6{font-family:'Space Grotesk',sans-serif;margin:0;font-size:inherit;font-weight:inherit}
+p,ul{margin:0;padding:0}ul{list-style:none}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}a:hover{color:#014995}
+button,input,textarea,select{font:inherit;color:inherit;margin:0}
+input::placeholder,textarea::placeholder{color:#55657a;opacity:1}
+input:focus,textarea:focus{outline:none;border-color:#014995 !important;box-shadow:0 0 0 2px #ffffff,0 0 0 4px #014995}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #ffffff; position: relative; overflow: hidden; display: flex; flex-direction: column;">
+  <dc-import name="Header" hint-size="100%,120px"></dc-import>
+  <main style="flex-grow: 1; padding: 136px 0 16px;">
+    <div style="width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
+      <div style="max-width: 1152px; margin: 0 auto; display: grid; grid-template-columns: {{ cols }}; gap: 32px; align-items: start;">
+        <div style="position: relative; background: #ffffff; border-radius: 12px; overflow: hidden; border: 1px solid #dbe3ee; display: flex; flex-direction: column; box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);">
+          <div style="position: relative; height: 256px; z-index: 10; width: 100%;">
+            <img src="src/assets/images/contact-page.jpg" data-cms-src="contact.image" alt="Industrial Robot Arm" style="width: 100%; height: 100%; object-fit: cover;">
+          </div>
+          <div style="padding: 16px 32px 48px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; z-index: 20;">
+            <div style="width: fit-content; max-width: 100%; background: #fff; padding: 12px 16px; border-radius: 16px; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); margin-top: -90px; margin-bottom: 16px; position: relative; z-index: 30;">
+              <img src="src/assets/images/harmatek-logo-horizontal.png" alt="HarmaTek – Electrical &amp; Industrial Solutions" style="width: 400px; max-width: 100%; height: auto; display: block;">
+            </div>
+            <h2 style="font-size: 30px; line-height: 36px; font-weight: 700; color: #0f1f33; margin-bottom: 24px;" data-cms="contact.cardTitle">Harma Tek</h2>
+            <div style="margin-bottom: 32px; font-weight: 600; color: #0f1f33; font-size: 18px; line-height: 28px;">
+              <p style="color: #0f1f33; font-size: 16px; line-height: 24px;" data-cms="contact.tagline">Specialized in maintaining machine production lines and installing electronic cards</p>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 12px; margin-bottom: 24px;">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FD5E00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg>
+              <div style="text-align: start; font-weight: 700; color: #0f1f33; font-size: 16px; line-height: 1.625; display: flex; flex-direction: {{ phoneDir }}; gap: {{ phoneGap }}; justify-content: center; align-items: center;">
+                <sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ phones }}" as="ph" hint-placeholder-count="0"><p>{{ ph.number }}</p></sc-for></sc-if>
+              </div>
+            </div>
+            <div style="margin-bottom: 24px; color: #4B5563; font-weight: 600; font-size: 18px; line-height: 28px; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: {{ infoGap }};">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FD5E00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+                <a href="mailto:sm@harmatek.sa" data-cms-href="contact.emailHref" style="display: block; color: #0f1f33; transition: color 0.2s;" style-hover="color: #014995;" data-cms="contact.email">sm@harmatek.sa</a>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FD5E00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <p style="color: #0f1f33;" data-cms="contact.location">Riyadh, KSA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: {{ formMt }};">
+          <form onSubmit="{{ submit }}" style="background: #ffffff; border-radius: 16px; padding: 32px; border: 1px solid #dbe3ee; box-shadow: 0 8px 32px rgb(1 40 82 / 0.08);">
+            <h3 style="font-size: 20px; line-height: 28px; font-weight: 700; margin-bottom: 24px;">Send us a Message</h3>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+                <div>
+                  <label for="name" style="display: block; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 8px;">Name</label>
+                  <input id="name" name="name" placeholder="Your name" required="" style="display: flex; height: 40px; width: 100%; border-radius: 10px; border: 1px solid #dbe3ee; background: #eaeff6; padding: 8px 12px; font-size: 14px; color: #0f1f33;">
+                </div>
+                <div>
+                  <label for="email" style="display: block; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 8px;">Email</label>
+                  <input id="email" name="email" type="email" placeholder="your@email.com" required="" style="display: flex; height: 40px; width: 100%; border-radius: 10px; border: 1px solid #dbe3ee; background: #eaeff6; padding: 8px 12px; font-size: 14px; color: #0f1f33;">
+                </div>
+              </div>
+              <div>
+                <label for="company" style="display: block; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 8px;">Company</label>
+                <input id="company" name="company" placeholder="Your company name" style="display: flex; height: 40px; width: 100%; border-radius: 10px; border: 1px solid #dbe3ee; background: #eaeff6; padding: 8px 12px; font-size: 14px; color: #0f1f33;">
+              </div>
+              <div>
+                <label for="message" style="display: block; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 8px;">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us about your safety requirements..." rows="4" required="" style="display: flex; min-height: 80px; width: 100%; border-radius: 10px; border: 1px solid #dbe3ee; background: #eaeff6; padding: 8px 12px; font-size: 14px; color: #0f1f33; resize: none;"></textarea>
+              </div>
+              <button type="submit" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 48px; padding: 0 32px; border-radius: 12px; font-size: 16px; font-weight: 600; background: #014995; color: #ffffff; box-shadow: 0 4px 30px rgb(1 73 149 / 0.15); cursor: pointer; transition: all 0.3s;" style-hover="background: rgb(1 73 149 / 0.8); box-shadow: 0 10px 15px -3px rgb(1 73 149 / 0.25);">{{ sendLabel }}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FD5E00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div style="width: 100%; max-width: 1400px; margin: 0 auto; padding: 64px {{ pad }} 48px;">
+      <div style="max-width: 1152px; margin: 0 auto;">
+        <h2 style="font-size: 36px; line-height: 40px; font-weight: 700; color: #0f1f33; text-align: center; margin-bottom: 32px;"><span data-ar="-" data-cms="contact.locationsTitle">Our </span><span data-ar="مواقعنا" data-cms="contact.locationsHighlight" style="color: #014995;">Locations</span></h2>
+        <div style="display: grid; grid-template-columns: {{ cols }}; gap: 32px; align-items: stretch;">
+<sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ locations }}" as="it" hint-placeholder-count="0">
+<div style="background: #ffffff; border: 1px solid #dbe3ee; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 32px rgb(1 40 82 / 0.08); display: flex; flex-direction: column;">
+          <div style="padding: 24px; display: flex; gap: 16px; align-items: flex-start;">
+            <div style="width: 48px; height: 48px; border-radius: 12px; background: rgb(1 73 149 / 0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FD5E00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div>
+              <p style="font-size: 14px; line-height: 20px; font-weight: 600; color: #FD5E00; margin-bottom: 4px;" data-ar="{{ it.label_ar }}">{{ it.label }}</p>
+              <p style="font-size: 18px; line-height: 26px; font-weight: 600; color: #0f1f33;" data-ar="{{ it.address_ar }}">{{ it.address }}</p>
+            </div>
+          </div>
+          <iframe src="{{ it.map }}" title="{{ it.label }} map" style="border: 0; width: 100%; height: 360px; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+</sc-for></sc-if>
+</div>
+      </div>
+    </div>
+  </main>
+  <dc-import name="Footer" hint-size="100%,360px"></dc-import>
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; top: 16px; right: 16px; z-index: 100; padding: 16px; border-radius: 8px; font-size: 14px; font-weight: 500; color: #0f1f33; background: {{ toast.bg }}; box-shadow: 0 4px 12px rgb(0 0 0 / 0.1); min-width: 300px;">{{ toast.text }}</div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: window.innerWidth, sending: false, toast: null };
+  componentDidMount() {
+    if (!window.HT_CMS) this.cmsPoll = setInterval(() => { if (window.HT_CMS) { clearInterval(this.cmsPoll); this.forceUpdate(); } }, 30);
+    this.onCms = () => this.forceUpdate(); window.addEventListener('ht-cms', this.onCms);
+this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); clearTimeout(this.tt); }
+  showToast(text, bg) { this.setState({ toast: { text, bg } }); clearTimeout(this.tt); this.tt = setTimeout(() => this.setState({ toast: null }), 4000); }
+  async submit(e) {
+    e.preventDefault();
+    if (this.state.sending) return;
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    this.setState({ sending: true });
+    try {
+      const res = await fetch('https://harmatek.sa/contact.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: fd.get('name'), email: fd.get('email'), company: fd.get('company'), message: fd.get('message') }) });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Failed to send');
+      this.showToast('Message sent successfully!', '#22c55d');
+      form.reset();
+    } catch (err) {
+      this.showToast('Failed to send message', '#ef4444');
+    } finally { this.setState({ sending: false }); }
+  }
+  renderVals() {
+    const { w, sending, toast } = this.state;
+    const md = w >= 768, lg = w >= 1024;
+    const C = window.HT_CMS;
+    return {
+      ready_: !!C,
+      phones: (C && C.get('contact.phones')) || [],
+      locations: (C && C.get('contact.locations')) || [],
+      pad: md ? '32px' : '16px',
+      cols: lg ? 'repeat(2, minmax(0, 1fr))' : 'minmax(0, 1fr)',
+      phoneDir: w >= 1400 ? 'row' : 'column',
+      phoneGap: w >= 1400 ? '16px' : '4px',
+      infoGap: lg ? '48px' : '16px',
+      formMt: lg ? '0' : '32px',
+      submit: e => this.submit(e),
+      sendLabel: sending ? 'Sending...' : 'Send Message',
+      toast,
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><style>@keyframes ht-fade{from{opacity:0}to{opacity:1}}@keyframes ht-slidein{from{transform:translateX(100%)}to{transform:none}}input[data-ht-search="light"]::placeholder{color:#ffffff;opacity:1}input[data-ht-search="dark"]::placeholder{color:#014995;opacity:1}</style></helmet>
+<header style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; transition: all 0.3s; background: {{ hdrBg }}; backdrop-filter: {{ hdrBlur }}; -webkit-backdrop-filter: {{ hdrBlur }}; box-shadow: {{ hdrShadow }}; border-bottom: 1px solid {{ hdrBorder }};">
+  <div style="width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
+    <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 120px;">
+      <a href="Home.dc.html" style="display: flex; align-items: center; gap: 12px; flex-shrink: 0; transition: transform 0.2s;" style-hover="transform: scale(1.02);">
+        <span style="display: flex; align-items: center; gap: 10px; height: {{ logoH }};">
+          <img src="src/assets/images/harmatek-symbol-t.png" alt="HarmaTek symbol" style="height: {{ symH }}; width: auto; object-fit: contain;">
+          <img src="{{ wordmarkSrc }}" alt="HarmaTek – Electrical &amp; Industrial Solutions" style="height: {{ wmH }}; width: auto; object-fit: contain;">
+        </span>
+      </a>
+      <sc-if value="{{ twoRow }}" hint-placeholder-val="{{ true }}">
+        <div style="flex: 1 1 auto; display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 32px; row-gap: 12px; align-items: center; max-width: 860px; margin-left: auto;">
+          <form onSubmit="{{ onSearch }}" style="position: relative; width: 100%; min-width: 0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ sIcon }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; inset-inline-start: 14px; top: 50%; transform: translateY(-50%); pointer-events: none;"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input type="search" value="{{ q }}" onChange="{{ onQ }}" onFocus="{{ onFocus }}" onBlur="{{ onBlur }}" placeholder="{{ t.search }}" aria-label="Search products" data-ht-search="{{ sMode }}" style="width: 100%; height: 42px; padding-block: 0; padding-inline: 40px 16px; border-radius: 9999px; font-size: 14px; outline: none; transition: all 0.2s; background: {{ sBg }}; border: 1px solid {{ sBorder }}; color: {{ sColor }};">
+          <sc-if value="{{ showSugg }}" hint-placeholder-val="{{ false }}">
+            <div style="position: absolute; top: calc(100% + 8px); left: 0; width: max(100%, 360px); background: #ffffff; border: 1px solid #dbe3ee; border-radius: 12px; box-shadow: 0 20px 40px rgb(1 40 82 / 0.16); overflow: hidden; z-index: 60;">
+              <sc-for list="{{ sugg }}" as="r" hint-placeholder-count="0">
+                <a href="{{ r.href }}" onMouseDown="{{ r.go }}" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-bottom: 1px solid #eaeff6; color: #0f1f33;" style-hover="background: #f4f7fb; color: #014995;">
+                  <span style="font-size: 14px; line-height: 20px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ r.title }}</span>
+                  <span style="font-size: 12px; line-height: 16px; color: #55657a;">{{ r.brand }}</span>
+                </a>
+              </sc-for>
+              <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+                <p style="padding: 12px 14px; font-size: 14px; color: #55657a;">No products found</p>
+              </sc-if>
+              <a href="{{ allHref }}" onMouseDown="{{ goAll }}" style="display: block; padding: 10px 14px; font-size: 14px; font-weight: 600; color: #014995; background: #f4f7fb;" style-hover="color: #FD5E00;">{{ allLabel }}</a>
+            </div>
+          </sc-if>
+        </form>
+          <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 {{ quotePx }}; border-radius: 12px; font-size: 16px; font-weight: 600; white-space: nowrap; flex-shrink: 0; background: #014995; color: #ffffff; transition: all 0.3s;" style-hover="background: rgb(1 73 149 / 0.8); color: #ffffff; box-shadow: 0 10px 15px -3px rgb(1 73 149 / 0.25);">{{ t.quote }}</a>
+          <nav style="display: flex; align-items: center; gap: 32px; justify-self: end;">
+            <sc-for list="{{ items }}" as="item" hint-placeholder-count="4">
+              <a href="{{ item.href }}" onMouseEnter="{{ item.enter }}" onMouseLeave="{{ item.leave }}" style="position: relative; font-weight: 500; white-space: nowrap; color: {{ item.color }}; transition: color 0.2s, transform 0.2s; transform: {{ item.lift }};">{{ item.label }}<span style="position: absolute; bottom: -4px; left: 0; height: 2px; transition: width 0.3s; background: #FD5E00; width: {{ item.ul }};"></span></a>
+            </sc-for>
+          </nav>
+          <div style="position: relative; justify-self: center;">
+          <button onClick="{{ toggleLang }}" aria-label="Change language" style="display: inline-flex; align-items: center; gap: 6px; background: none; cursor: pointer; font-size: 15px; font-weight: 600; padding: 4px 2px; color: {{ navColor }};">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+            <span>{{ langLabel }}</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+          </button>
+          <sc-if value="{{ langOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position: absolute; top: calc(100% + 8px); inset-inline-end: 0; min-width: 150px; background: #ffffff; border: 1px solid #dbe3ee; border-radius: 12px; box-shadow: 0 20px 40px rgb(1 40 82 / 0.16); overflow: hidden; z-index: 60;">
+              <sc-for list="{{ langs }}" as="l" hint-placeholder-count="2">
+                <button onClick="{{ l.pick }}" style="display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; background: {{ l.bg }}; color: {{ l.color }}; font-size: 14px; font-weight: 500; cursor: pointer; text-align: left;" style-hover="background: #f4f7fb;">{{ l.label }}</button>
+              </sc-for>
+            </div>
+          </sc-if>
+        </div>
+        </div>
+      </sc-if>
+      <sc-if value="{{ oneRow }}" hint-placeholder-val="{{ false }}">
+        <form onSubmit="{{ onSearch }}" style="position: relative; flex: 1 1 auto; min-width: 0; max-width: 520px; margin-inline-end: auto;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ sIcon }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; inset-inline-start: 14px; top: 50%; transform: translateY(-50%); pointer-events: none;"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input type="search" value="{{ q }}" onChange="{{ onQ }}" onFocus="{{ onFocus }}" onBlur="{{ onBlur }}" placeholder="{{ t.search }}" aria-label="Search products" data-ht-search="{{ sMode }}" style="width: 100%; height: 42px; padding-block: 0; padding-inline: 40px 16px; border-radius: 9999px; font-size: 14px; outline: none; transition: all 0.2s; background: {{ sBg }}; border: 1px solid {{ sBorder }}; color: {{ sColor }};">
+          <sc-if value="{{ showSugg }}" hint-placeholder-val="{{ false }}">
+            <div style="position: absolute; top: calc(100% + 8px); left: 0; width: max(100%, 360px); background: #ffffff; border: 1px solid #dbe3ee; border-radius: 12px; box-shadow: 0 20px 40px rgb(1 40 82 / 0.16); overflow: hidden; z-index: 60;">
+              <sc-for list="{{ sugg }}" as="r" hint-placeholder-count="0">
+                <a href="{{ r.href }}" onMouseDown="{{ r.go }}" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-bottom: 1px solid #eaeff6; color: #0f1f33;" style-hover="background: #f4f7fb; color: #014995;">
+                  <span style="font-size: 14px; line-height: 20px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ r.title }}</span>
+                  <span style="font-size: 12px; line-height: 16px; color: #55657a;">{{ r.brand }}</span>
+                </a>
+              </sc-for>
+              <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+                <p style="padding: 12px 14px; font-size: 14px; color: #55657a;">No products found</p>
+              </sc-if>
+              <a href="{{ allHref }}" onMouseDown="{{ goAll }}" style="display: block; padding: 10px 14px; font-size: 14px; font-weight: 600; color: #014995; background: #f4f7fb;" style-hover="color: #FD5E00;">{{ allLabel }}</a>
+            </div>
+          </sc-if>
+        </form>
+        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; height: {{ quoteH }}; padding: 0 {{ quotePx }}; border-radius: 12px; font-size: 16px; font-weight: 600; white-space: nowrap; flex-shrink: 0; background: #014995; color: #ffffff; transition: all 0.3s;" style-hover="background: rgb(1 73 149 / 0.8); color: #ffffff; box-shadow: 0 10px 15px -3px rgb(1 73 149 / 0.25);">{{ t.quote }}</a>
+      </sc-if>
+      <sc-if value="{{ showBurger }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggle }}" aria-label="Toggle menu" style="background: none; padding: 8px; cursor: pointer; color: {{ burgerColor }}; flex-shrink: 0;">{{ menuIcon }}</button>
+      </sc-if>
+    </div>
+  </div>
+</header>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeMenu }}" style="position: fixed; inset: 0; z-index: 70; background: rgb(8 18 32 / 0.55); backdrop-filter: blur(2px); animation: ht-fade 0.2s ease-out both;"></div>
+    <aside style="position: fixed; top: 0; right: 0; bottom: 0; z-index: 71; width: min(380px, 88vw); background: #ffffff; box-shadow: -20px 0 50px rgb(1 40 82 / 0.2); display: flex; flex-direction: column; overflow-y: auto; animation: ht-slidein 0.25s ease-out both;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 20px 12px; border-bottom: 1px solid #eaeff6;">
+        <img src="src/assets/images/harmatek-symbol-t.png" alt="HarmaTek symbol" style="height: 48px; width: auto;">
+        <button onClick="{{ closeMenu }}" aria-label="Close menu" style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 9999px; background: #f4f7fb; color: #014995; cursor: pointer;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+        </button>
+      </div>
+      <nav style="padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+        <sc-if value="{{ searchInMenu }}" hint-placeholder-val="{{ false }}">
+        <form onSubmit="{{ onSearch }}" style="position: relative; width: 100%; flex-shrink: 1;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{ sIcon }}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; inset-inline-start: 14px; top: 50%; transform: translateY(-50%); pointer-events: none;"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input type="search" value="{{ q }}" onChange="{{ onQ }}" onFocus="{{ onFocus }}" onBlur="{{ onBlur }}" placeholder="{{ t.search }}" aria-label="Search products" data-ht-search="{{ sMode }}" style="width: 100%; height: 42px; padding-block: 0; padding-inline: 40px 16px; border-radius: 9999px; font-size: 14px; outline: none; transition: all 0.2s; background: {{ sBg }}; border: 1px solid {{ sBorder }}; color: {{ sColor }};">
+          <sc-if value="{{ showSugg }}" hint-placeholder-val="{{ false }}">
+            <div style="position: absolute; top: calc(100% + 8px); left: 0; width: max(100%, 360px); background: #ffffff; border: 1px solid #dbe3ee; border-radius: 12px; box-shadow: 0 20px 40px rgb(1 40 82 / 0.16); overflow: hidden; z-index: 60;">
+              <sc-for list="{{ sugg }}" as="r" hint-placeholder-count="0">
+                <a href="{{ r.href }}" onMouseDown="{{ r.go }}" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-bottom: 1px solid #eaeff6; color: #0f1f33;" style-hover="background: #f4f7fb; color: #014995;">
+                  <span style="font-size: 14px; line-height: 20px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ r.title }}</span>
+                  <span style="font-size: 12px; line-height: 16px; color: #55657a;">{{ r.brand }}</span>
+                </a>
+              </sc-for>
+              <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+                <p style="padding: 12px 14px; font-size: 14px; color: #55657a;">No products found</p>
+              </sc-if>
+              <a href="{{ allHref }}" onMouseDown="{{ goAll }}" style="display: block; padding: 10px 14px; font-size: 14px; font-weight: 600; color: #014995; background: #f4f7fb;" style-hover="color: #FD5E00;">{{ allLabel }}</a>
+            </div>
+          </sc-if>
+        </form>
+        </sc-if>
+        <sc-for list="{{ items }}" as="item" hint-placeholder-count="5">
+          <a href="{{ item.href }}" style="color: rgb(15 31 51 / 0.8); font-weight: 500; padding: 8px 0;" style-hover="color: #014995;">{{ item.label }}</a>
+        </sc-for>
+        <div style="display: flex; align-items: center; gap: 12px; padding-top: 8px; border-top: 1px solid #dbe3ee; color: #014995;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#014995" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+          <sc-for list="{{ langs }}" as="l" hint-placeholder-count="2">
+            <button onClick="{{ l.pick }}" style="padding: 6px 14px; border-radius: 9999px; font-size: 14px; font-weight: 600; cursor: pointer; background: {{ l.pillBg }}; color: {{ l.pillColor }}; border: 1px solid #014995;">{{ l.label }}</button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ quoteInMenu }}" hint-placeholder-val="{{ false }}"><a href="Contact.dc.html" style="display: flex; align-items: center; justify-content: center; width: 100%; margin-top: 16px; height: 44px; padding: 8px 20px; border-radius: 12px; font-size: 14px; font-weight: 600; background: #014995; color: #ffffff;">{{ t.quote }}</a></sc-if>
+      </nav>
+    </aside>
+  </sc-if>
+
+<a href="https://wa.me/966559471701?text=Hi%2C%20I%E2%80%99d%20like%20to%20know%20more%20about%20your%20products%20and%20services." data-cms-href="wa" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" style="position: fixed; bottom: {{ waOff }}; right: {{ waOff }}; z-index: 50; display: inline-flex; width: 64px; height: 64px; align-items: center; justify-content: center; border-radius: 9999px; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); transition: transform 0.15s;" style-hover="transform: scale(1.05);">
+  <img src="src/assets/images/whatsapp.png" alt="Chat with us on WhatsApp" style="width: 100%; height: 100%; border-radius: 9999px; object-fit: contain;">
+</a>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;overlay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { scrolled: false, w: window.innerWidth, open: false, hov: -1, q: new URLSearchParams(location.search).get('q') || '', focus: false, ready: !!window.HARMATEK_PRODUCTS, lang: localStorage.getItem('ht-lang') || 'en', langOpen: false };
+  setLang(l) { localStorage.setItem('ht-lang', l); document.documentElement.lang = l; this.setState({ lang: l, langOpen: false }); window.dispatchEvent(new CustomEvent('ht-lang', { detail: l })); }
+  loadData() {
+    if (window.HARMATEK_PRODUCTS) return this.setState({ ready: true });
+    if (!document.getElementById('ht-products-data')) { const s = document.createElement('script'); s.id = 'ht-products-data'; s.src = 'products-data.js'; document.head.appendChild(s); }
+    clearInterval(this.poll);
+    this.poll = setInterval(() => { if (window.HARMATEK_PRODUCTS) { clearInterval(this.poll); this.setState({ ready: true }); } }, 50);
+  }
+  go(q) { location.href = 'Products.dc.html' + (q ? '?q=' + encodeURIComponent(q) : ''); }
+  componentDidMount() {
+    this.onS = () => this.setState({ scrolled: window.scrollY > 50 });
+    this.onR = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('scroll', this.onS);
+    window.addEventListener('resize', this.onR);
+    this.onS();
+    document.documentElement.lang = this.state.lang;
+    this.onDoc = (e) => { if (this.state.langOpen && !e.target.closest('[aria-label="Change language"]') ) this.setState({ langOpen: false }); };
+    document.addEventListener('click', this.onDoc);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onS);
+    window.removeEventListener('resize', this.onR);
+    clearInterval(this.poll);
+    document.removeEventListener('click', this.onDoc);
+  }
+  renderVals() {
+    const { scrolled: s, w, open, hov } = this.state;
+    const light = !s && !!this.props.overlay;
+    const ar = this.state.lang === 'ar';
+    const t = ar ? { search: 'ابحث عن المنتجات...', quote: 'اطلب عرض سعر' } : { search: 'Search products...', quote: 'Get a Quote' };
+    const nav = [[ar ? 'المنتجات' : 'Products', 'Products.dc.html'], [ar ? 'الكتيبات' : 'Brochure', 'Brochures.dc.html'], [ar ? 'من نحن' : 'About', 'About.dc.html'], [ar ? 'اتصل بنا' : 'Contact', 'Contact.dc.html']];
+    const items = nav.map(([label, href], i) => ({
+      label, href,
+      color: hov === i ? '#FD5E00' : (light ? 'rgb(255 255 255 / 0.9)' : (s ? '#014995' : 'rgb(15 31 51 / 0.8)')),
+      ul: hov === i ? '100%' : '0',
+      lift: hov === i ? 'translateY(-2px)' : 'none',
+      enter: () => this.setState({ hov: i }),
+      leave: () => this.setState({ hov: -1 }),
+    }));
+    const h = React.createElement;
+    const svg = (paths) => h('svg', { width: 24, height: 24, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 2, strokeLinecap: 'round', strokeLinejoin: 'round' }, paths.map((d, i) => h('path', { key: i, d })));
+    const full = w >= 1180, tiny = w < 640;
+    const mobile = !full;
+    const q = this.state.q.trim().toLowerCase();
+    let sugg = [];
+    const SRC = (window.HT_CMS && window.HT_CMS.products()) || window.HARMATEK_PRODUCTS;
+    if (q.length >= 2 && SRC) {
+      const terms = q.split(/\s+/);
+      for (const p of SRC) {
+        const hay = (p[0] + ' ' + p[1] + ' ' + p[4]).toLowerCase();
+        if (terms.every(t => hay.includes(t))) { sugg.push(p); if (sugg.length >= 6) break; }
+      }
+    }
+    const lightS = light && !(mobile && open);
+    return {
+      q: this.state.q,
+      onQ: e => this.setState({ q: e.target.value }),
+      onFocus: () => { this.setState({ focus: true }); this.loadData(); },
+      onBlur: () => setTimeout(() => this.setState({ focus: false }), 150),
+      onSearch: e => { e.preventDefault(); this.go(this.state.q.trim()); },
+      showSugg: this.state.focus && q.length >= 2,
+      sugg: sugg.map(p => ({ title: p[0], brand: p[4] || 'Unbranded', href: 'Products.dc.html?q=' + encodeURIComponent(p[0]), go: () => this.go(p[0]) })),
+      noResults: this.state.ready && sugg.length === 0,
+      allHref: 'Products.dc.html?q=' + encodeURIComponent(this.state.q.trim()),
+      allLabel: (ar ? 'عرض كل النتائج لـ “' : 'See all results for “') + this.state.q.trim() + '”',
+      goAll: () => this.go(this.state.q.trim()),
+      sBg: lightS ? 'rgb(255 255 255 / 0.12)' : '#f4f7fb',
+      sBorder: lightS ? 'rgb(255 255 255 / 0.35)' : '#dbe3ee',
+      sColor: lightS ? '#ffffff' : '#014995',
+      sIcon: lightS ? '#ffffff' : '#014995',
+      sMode: lightS ? 'light' : 'dark',
+      burgerColor: lightS ? '#ffffff' : '#014995',
+      items,
+      t,
+      twoRow: full,
+      oneRow: !full && !tiny,
+      navColor: light ? 'rgb(255 255 255 / 0.9)' : (s ? '#014995' : 'rgb(15 31 51 / 0.8)'),
+      langLabel: ar ? 'العربية' : 'English',
+      langOpen: this.state.langOpen,
+      toggleLang: () => this.setState({ langOpen: !this.state.langOpen }),
+      langs: [['en', 'English'], ['ar', 'العربية']].map(([k, label]) => ({ label, pick: () => this.setLang(k), bg: this.state.lang === k ? '#f4f7fb' : '#ffffff', color: this.state.lang === k ? '#014995' : '#0f1f33', pillBg: this.state.lang === k ? '#014995' : 'transparent', pillColor: this.state.lang === k ? '#ffffff' : '#014995' })),
+      showBurger: !full,
+      searchInMenu: tiny,
+      quoteInMenu: tiny,
+      quoteH: w >= 1024 ? '48px' : '42px',
+      quotePx: w >= 1024 ? '32px' : '18px',
+      logoH: w >= 1024 ? '96px' : '72px',
+      symH: w >= 1024 ? '84px' : '62px',
+      wmH: w >= 1024 ? '69px' : '50px',
+      menuOpen: mobile && open,
+      toggle: () => this.setState({ open: !open }),
+      closeMenu: () => this.setState({ open: false }),
+      menuIcon: open ? svg(['M18 6 6 18', 'm6 6 12 12']) : svg(['M4 12h16', 'M4 6h16', 'M4 18h16']),
+      pad: w >= 1024 ? '32px' : '16px',
+      waOff: w >= 768 ? '24px' : '16px',
+      wordmarkSrc: light ? 'src/assets/images/harmatek-wordmark-t-light.png' : 'src/assets/images/harmatek-wordmark-t.png',
+      hdrBg: s ? 'rgb(255 255 255 / 0.97)' : 'transparent',
+      hdrBlur: s ? 'blur(12px)' : 'none',
+      hdrShadow: s ? '0 10px 15px -3px rgb(1 40 82 / 0.08), 0 4px 6px -4px rgb(1 40 82 / 0.08)' : 'none',
+      hdrBorder: s ? '#dbe3ee' : 'transparent',
+    };
+  }
+}
+</script>
+</body>
+</html>

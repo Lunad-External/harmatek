@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Our Products | HarmaTek</title>
+<meta name="description" content="Explore HarmaTek's range of forklift safety systems, collision avoidance technology, and telematics solutions.">
+<link rel="icon" href="public/favicon.ico">
+<script src="cms.js"></script>
+<script src="i18n.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap">
+<script src="products-data.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;border:0 solid #dbe3ee}
+html{scroll-behavior:smooth;line-height:1.5}
+body{margin:0;background:#ffffff;color:#0f1f33;font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+h1,h2,h3,h4,h5,h6{font-family:'Space Grotesk',sans-serif;margin:0;font-size:inherit;font-weight:inherit}
+p,ul{margin:0;padding:0}ul{list-style:none}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}a:hover{color:#014995}
+button,input,textarea,select{font:inherit;color:inherit;margin:0}
+select:focus{outline:none;box-shadow:0 0 0 2px #ffffff,0 0 0 4px #014995}
+select option{background:#f4f7fb;color:#0f1f33}
+@keyframes ht-fadein{from{opacity:0}to{opacity:1}}
+@keyframes ht-fadeup{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #ffffff; position: relative; overflow: hidden; display: flex; flex-direction: column;">
+  <dc-import name="Header" hint-size="100%,120px"></dc-import>
+  <main style="flex-grow: 1; padding: 136px 0 96px;">
+    <div style="width: 100%; max-width: 1400px; margin: 0 auto 48px; padding: 0 {{ pad }};">
+      <div style="position: relative; width: 100%; min-height: {{ sliderH }}; overflow: hidden; border-radius: 16px; display: flex;">
+        <sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ slides }}" as="s" hint-placeholder-count="0">
+          <div style="position: absolute; inset: 0; transition: opacity 1s ease; opacity: {{ s.op }};">
+            <div role="img" aria-label="{{ s.alt }}" style="width: 100%; height: 100%;  background-image: url('{{ s.src }}'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+            <div data-flip-x="" style="position: absolute; inset: 0; background: linear-gradient(to right, rgb(1 40 82 / 0.85), rgb(1 40 82 / 0.45), transparent);"></div>
+          </div>
+        </sc-for></sc-if>
+        <div style="position: relative; z-index: 10; display: flex; align-items: center; width: 100%; padding: 56px 0 88px;">
+          <div style="width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
+            <div style="max-width: 768px; animation: ht-fadeup 0.8s 0.2s ease-out both;">
+              <h1 style="font-size: {{ h1Size }}; line-height: 1; font-weight: 700; color: #fff; margin-bottom: 24px; filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));"><span data-cms="products.bannerTitle" data-ar="-">Our</span> <span data-cms="products.bannerHighlight" data-ar="منتجاتنا" style="color: #ffffff;">Products</span></h1>
+              <p style="font-size: {{ subSize }}; line-height: 1.625; color: rgb(255 255 255 / 0.9); max-width: 672px; filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));" data-cms="products.bannerP1">We are a leading company specialized in supplying all products related to electrical production lines and control panels, including PLC and VFD units. We provide comprehensive solutions that meet industry needs with the highest standards of quality and reliability. Our mission is to support our partners by delivering the latest technologies and exceptional services to ensure the continuity and efficiency of production operations</p>
+              <p data-ar-dup="" style="font-size: {{ subSize }}; line-height: 1.625; color: rgb(255 255 255 / 0.9); max-width: 672px; filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));" data-cms="products.bannerP2">نحن شركة رائدة ومتخصصة في توريد جميع المنتجات المتعلقة بخطوط الإنتاج الكهربائية ولوحات التحكم، بما في ذلك وحدات) PLC وVFD، مع تقديم حلول متكاملة تلبي احتياجات الصناعة  ( بأعلى معايير الجودة والموثوقية. نسعى دائمًا لدعم شركائنا من خلال توفير أحدث التقنيات والخدمات المتميزة لضمان استمرارية وكفاءة عمليات الإنتاج</p>
+            </div>
+          </div>
+        </div>
+        <div style="position: absolute; bottom: 20px; left: 0; width: 100%; z-index: 10; display: flex; justify-content: center; align-items: center;">
+          <sc-for list="{{ slides }}" as="s" hint-placeholder-count="9">
+            <span onClick="{{ s.go }}" style="height: 10px; border-radius: 5px; margin: 0 6px; cursor: pointer; transition: all 0.3s ease; width: {{ s.bw }}; background: {{ s.bc }};"></span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <div style="width: 100%; max-width: 1400px; margin: 0 auto 32px; padding: 0 {{ pad }};">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 24px; background: rgb(234 239 246 / 0.5); border-radius: 12px;">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px;">
+          <p style="color: #55657a;">Showing <span style="font-weight: 600; color: #0f1f33;">{{ rangeLabel }}</span> of <span style="font-weight: 600; color: #0f1f33;">{{ total }}</span> products</p>
+          <sc-if value="{{ hasQuery }}" hint-placeholder-val="{{ false }}">
+            <span style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 6px 4px 12px; border-radius: 9999px; background: rgb(1 73 149 / 0.1); border: 1px solid rgb(1 73 149 / 0.3); color: #014995; font-size: 14px; line-height: 20px; font-weight: 500;">for “{{ qText }}”
+              <button onClick="{{ clearQ }}" aria-label="Clear search" style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 9999px; background: #014995; color: #ffffff; cursor: pointer; font-size: 14px; line-height: 1;">×</button>
+            </span>
+          </sc-if>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <label style="font-size: 14px; line-height: 20px; color: #55657a;">Brand</label>
+            <select value="{{ brand }}" onChange="{{ onBrand }}" style="height: 36px; min-width: 180px; border-radius: 10px; border: 1px solid #dbe3ee; background: #ffffff; padding: 0 12px; font-size: 14px; color: #0f1f33; cursor: pointer;">
+              <sc-for list="{{ brandOptions }}" as="o" hint-placeholder-count="1">
+                <option value="{{ o.value }}">{{ o.label }}</option>
+              </sc-for>
+            </select>
+          </div>
+          <p style="font-size: 14px; line-height: 20px; color: #55657a;">Page <span style="font-weight: 600; color: #0f1f33;">{{ page }}</span> of <span style="font-weight: 600; color: #0f1f33;">{{ pagesDisplay }}</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div style="width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
+      <div style="display: grid; grid-template-columns: {{ cols3 }}; gap: 32px;">
+        <sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ items }}" as="p" hint-placeholder-count="0">
+          <article onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="position: relative; display: flex; flex-direction: column; height: 100%; background: #f4f7fb; border-radius: 16px; overflow: hidden; border: 1px solid {{ p.border }}; box-shadow: {{ p.shadow }}; transition: all 0.5s; animation: ht-fadeup 0.6s ease-out both; animation-delay: {{ p.delay }};">
+            <div style="position: relative; height: 256px; flex-shrink: 0; overflow: hidden; background: #eaeff6;">
+              <div role="img" aria-label="{{ p.title }}" style="width: 100%; height: 100%; transition: transform 0.6s ease-out; transform: {{ p.scale }}; background-image: url('{{ p.image }}'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+              <div style="position: absolute; inset: 0; opacity: 0.6; background: linear-gradient(to top, #ffffff, transparent, transparent);"></div>
+              <div style="position: absolute; inset: 0; background: rgb(1 73 149 / 0.05); transition: opacity 0.3s; opacity: {{ p.hov }};"></div>
+              <div style="position: absolute; inset: 0; pointer-events: none; transition: opacity 0.5s; opacity: {{ p.hov }}; background: linear-gradient(to top, rgb(1 73 149 / 0.2), transparent);"></div>
+            </div>
+            <div style="padding: 24px; flex: 1 1 auto; display: flex; flex-direction: column;">
+              <h3 style="font-size: 20px; line-height: 28px; min-height: 56px; font-weight: 700; margin-bottom: 12px; transition: color 0.2s; color: {{ p.titleColor }}; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;" data-ar="{{ p.title_ar }}">{{ p.title }}</h3>
+              <p style="color: #55657a; margin-bottom: 16px; font-size: 14px; line-height: 20px; min-height: 60px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;" data-ar="{{ p.description_ar }}">{{ p.description }}</p>
+              <ul style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;">
+                <sc-for list="{{ p.features }}" as="f" hint-placeholder-count="4">
+                  <li style="display: flex; align-items: center; gap: 8px; font-size: 14px; line-height: 20px; color: rgb(15 31 51 / 0.8);">
+                    <span style="width: 6px; height: 6px; border-radius: 9999px; background: #014995; flex-shrink: 0;"></span>
+                    <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ f }}</span>
+                  </li>
+                </sc-for>
+              </ul>
+              <a href="{{ p.wa }}" target="_blank" rel="noopener noreferrer" style="margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 44px; border-radius: 12px; background: #014995; color: #ffffff; font-size: 15px; font-weight: 600; transition: all 0.3s;" style-hover="background: rgb(1 73 149 / 0.85); color: #ffffff; box-shadow: 0 10px 15px -3px rgb(1 73 149 / 0.25);">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"></path><path d="M12.04 2C6.5 2 2 6.48 2 12c0 1.77.46 3.5 1.34 5.02L2 22l5.12-1.34A10.04 10.04 0 0 0 12.04 22C17.58 22 22 17.52 22 12S17.58 2 12.04 2zm0 18.3c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.04.8.81-2.96-.2-.31A8.26 8.26 0 0 1 3.74 12c0-4.57 3.73-8.3 8.3-8.3 4.58 0 8.3 3.73 8.3 8.3 0 4.58-3.72 8.3-8.3 8.3z"></path></svg>
+                <span data-ar="{{ enqAr }}">{{ enqLabel }}</span>
+              </a>
+            </div>
+            <div style="position: absolute; top: 0; right: 0; width: 80px; height: 80px; overflow: hidden;">
+              <div style="position: absolute; inset: 0; background: linear-gradient(to bottom left, rgb(1 73 149 / 0.2), transparent); transition: opacity 0.5s; opacity: {{ p.hov }};"></div>
+            </div>
+          </article>
+        </sc-for></sc-if>
+      </div>
+
+      <sc-if value="{{ noMatches }}" hint-placeholder-val="{{ false }}">
+        <p style="text-align: center; padding: 48px 0; color: #55657a;">No products match “{{ qText }}”. Try a different search term or brand.</p>
+      </sc-if>
+      <sc-if value="{{ showPager }}" hint-placeholder-val="{{ true }}">
+        <div style="margin-top: 64px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px;">
+          <button onClick="{{ prev }}" disabled="{{ prevDisabled }}" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 120px; height: 48px; padding: 0 32px; border-radius: 12px; font-size: 16px; font-weight: 600; border: 2px solid rgb(1 73 149 / 0.5); background: transparent; color: #014995; cursor: pointer; transition: all 0.3s; opacity: {{ prevOp }};" style-hover="background: rgb(1 73 149 / 0.1); border-color: #014995;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FD5E00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"></path></svg>
+            Previous
+          </button>
+          <div style="display: flex; align-items: center; gap: 4px;">
+            <sc-for list="{{ pageBtns }}" as="b" hint-placeholder-count="6">
+              <sc-if value="{{ b.dots }}" hint-placeholder-val="{{ false }}">
+                <span style="padding: 0 12px; color: #55657a;">...</span>
+              </sc-if>
+              <sc-if value="{{ b.num }}" hint-placeholder-val="{{ true }}">
+                <button onClick="{{ b.go }}" style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s; background: {{ b.bg }}; color: {{ b.color }}; border: {{ b.border }};">{{ b.label }}</button>
+              </sc-if>
+            </sc-for>
+          </div>
+          <button onClick="{{ next }}" disabled="{{ nextDisabled }}" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 120px; height: 48px; padding: 0 32px; border-radius: 12px; font-size: 16px; font-weight: 600; border: 2px solid rgb(1 73 149 / 0.5); background: transparent; color: #014995; cursor: pointer; transition: all 0.3s; opacity: {{ nextOp }};" style-hover="background: rgb(1 73 149 / 0.1); border-color: #014995;">
+            Next
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FD5E00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"></path></svg>
+          </button>
+        </div>
+      </sc-if>
+
+      <div style="margin-top: 80px; text-align: center;">
+        <p style="color: #55657a; margin-bottom: 24px;" data-cms="products.ctaText">Looking for a custom solution? We specialize in tailoring our technology to your specific needs.</p>
+        <a href="Contact.dc.html" style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 32px; border-radius: 10px; background: #014995; color: #ffffff; font-weight: 500; transition: background 0.2s; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);" style-hover="background: rgb(1 73 149 / 0.9); color: #ffffff;" data-cms="products.ctaButton">Contact Sales Team</a>
+      </div>
+    </div>
+  </main>
+  <dc-import name="Footer" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: window.innerWidth, slide: 0, page: 1, brand: '__ALL__', hp: -1, q: new URLSearchParams(location.search).get('q') || '', ready: !!(window.HT_CMS && window.HT_CMS.products()) };
+  componentDidMount() {
+    this.onR = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onR);
+    this.t = setInterval(() => this.setState(s => ({ slide: (s.slide + 1) % Math.max(1, ((window.HT_CMS && window.HT_CMS.get('products.bannerSlides')) || []).length) })), 5000);
+    this.onCms = () => { this.ordered = null; this.forceUpdate(); }; window.addEventListener('ht-cms', this.onCms);
+    if (!this.state.ready) this.poll = setInterval(() => { if (window.HT_CMS && window.HT_CMS.products()) { clearInterval(this.poll); this.ordered = null; this.setState({ ready: true }); } }, 50);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); clearInterval(this.t); clearInterval(this.poll); }
+  getOrdered() {
+    if (this.ordered) return this.ordered;
+    const raw = window.HT_CMS && window.HT_CMS.products();
+    if (!raw) return [];
+    const all = raw.map(([title, description, image, features, brand, title_ar, description_ar]) => ({ title, description, image, features: features || [], brand: brand || '', title_ar, description_ar }));
+    const isP = t => ['siemens', 'schneider'].some(b => t.toLowerCase().includes(b));
+    const pr = all.filter(p => isP(p.title)), other = all.filter(p => !isP(p.title));
+    const slots = 3 * 21;
+    this.ordered = [...pr.slice(0, slots), ...other, ...pr.slice(slots)];
+    this.brands = Array.from(new Set(this.ordered.map(p => p.brand.trim()).filter(b => b.length))).sort((a, b) => a.localeCompare(b));
+    return this.ordered;
+  }
+  goPage(n) { this.setState({ page: n }); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  renderVals() {
+    const C = window.HT_CMS;
+    const { w, slide, page, brand, hp, q } = this.state;
+    const md = w >= 768, lg = w >= 1024, xl = w >= 1280;
+    const PER = 21;
+    const ordered = this.getOrdered();
+    let filtered = brand === '__ALL__' ? ordered : brand === '__UNBRANDED__' ? ordered.filter(p => p.brand.trim() === '') : ordered.filter(p => p.brand.trim() === brand);
+    const terms = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    const exact = q.trim().toLowerCase();
+    if (terms.length) {
+      const hit = filtered.filter(p => { const hay = (p.title + ' ' + p.description + ' ' + p.brand).toLowerCase(); return terms.every(t => hay.includes(t)); });
+      filtered = [...hit.filter(p => p.title.toLowerCase() === exact), ...hit.filter(p => p.title.toLowerCase() !== exact)];
+    }
+    const total = filtered.length;
+    const totalPages = Math.ceil(total / PER);
+    const start = (page - 1) * PER;
+    const end = Math.min(start + PER, total);
+    const RAW = 'src/assets/productImages/';
+    const items = filtered.slice(start, start + PER).map((p, i) => {
+      const on = hp === i;
+      return {
+        title: p.title, description: p.description, features: p.features.slice(0, 4),
+        wa: C ? C.wa(String(C.get('whatsapp.enquiryMessage') || '').replace('{product}', p.title)) : '#', title_ar: p.title_ar, description_ar: p.description_ar,
+        image: !p.image ? 'public/placeholder-product.png' : /^(https?:|data:|src\/|public\/)/.test(p.image) ? p.image : RAW + p.image.replace('.webp', '') + '.webp',
+        hov: on ? 1 : 0, scale: on ? 'scale(1.08)' : 'scale(1)',
+        titleColor: on ? '#014995' : '#0f1f33',
+        border: on ? 'rgb(1 73 149 / 0.5)' : '#dbe3ee',
+        shadow: on ? '0 20px 60px rgb(1 40 82 / 0.16)' : '0 8px 32px rgb(1 40 82 / 0.08)',
+        delay: (i * 0.05) + 's',
+        enter: () => this.setState({ hp: i }), leave: () => this.setState({ hp: -1 }),
+      };
+    });
+    const pages = [];
+    if (totalPages <= 5) { for (let i = 1; i <= totalPages; i++) pages.push(i); }
+    else if (page <= 3) { pages.push(1, 2, 3, 4, '...', totalPages); }
+    else if (page >= totalPages - 2) { pages.push(1, '...'); for (let i = totalPages - 3; i <= totalPages; i++) pages.push(i); }
+    else { pages.push(1, '...', page - 1, page, page + 1, '...', totalPages); }
+    const pageBtns = pages.map(n => {
+      const cur = n === page;
+      return n === '...' ? { dots: true, num: false } : {
+        dots: false, num: true, label: n, go: () => this.goPage(n),
+        bg: cur ? '#014995' : 'transparent', color: cur ? '#ffffff' : '#014995',
+        border: cur ? '2px solid transparent' : '2px solid rgb(1 73 149 / 0.5)',
+      };
+    });
+    const heroImgs = ['hero-image-1.jpg', 'hero-image-2.jpg', 'hero-image-3.jpeg', 'hero-image-4.jpg', 'hero-image-5.jpg', 'hero-image-7.jpg', 'hero-image-8.jpg', 'hero-image-9.jpg', 'hero-image-10.jpg'];
+    const alts = ['Industrial warehouse operations', 'Modern safety equipment', 'Engineering solutions', 'Industrial automation', 'Warehouse technology', 'Engineering solutions2', 'Engineering solutions3', 'Engineering solutions4', 'Engineering solutions5'];
+    return {
+      ready_: true,
+      hasQuery: terms.length > 0,
+      qText: q.trim(),
+      clearQ: () => { this.setState({ q: '', page: 1 }); history.replaceState(null, '', location.pathname); },
+      noMatches: terms.length > 0 && total === 0,
+      pad: lg ? '32px' : '16px',
+      sliderH: lg ? '400px' : md ? '500px' : '400px',
+      h1Size: xl ? '60px' : lg ? '48px' : md ? '36px' : '30px',
+      subSize: lg ? '20px' : md ? '18px' : '16px',
+      cols3: lg ? 'repeat(3, minmax(0, 1fr))' : md ? 'repeat(2, minmax(0, 1fr))' : 'minmax(0, 1fr)',
+      enqLabel: (C && C.get('whatsapp.enquiryButton')) || 'Send Enquiry', enqAr: C && C.get('whatsapp.enquiryButton_ar'),
+      slides: ((C && C.get('products.bannerSlides')) || []).map((s, i) => ({ src: s.image, alt: s.alt || alts[i] || 'HarmaTek products', op: i === slide ? 1 : 0, bw: i === slide ? '30px' : '10px', bc: i === slide ? '#ffffff' : 'rgba(255,255,255,0.4)', go: () => this.setState({ slide: i }) })),
+      rangeLabel: `${total === 0 ? 0 : start + 1}-${end}`,
+      total, page, pagesDisplay: Math.max(totalPages, 1), brand,
+      brandOptions: [{ value: '__ALL__', label: 'All Brands' }, { value: '__UNBRANDED__', label: 'Unbranded' }, ...(this.brands || []).map(b => ({ value: b, label: b }))],
+      onBrand: e => this.setState({ brand: e.target.value, page: 1 }),
+      items,
+      imgErr: e => { const el = e.currentTarget; if (!el.dataset.fb) { el.dataset.fb = '1'; el.src = 'public/placeholder-product.png'; } },
+      showPager: totalPages > 1,
+      pageBtns,
+      prev: () => page > 1 && this.goPage(page - 1),
+      next: () => page < totalPages && this.goPage(page + 1),
+      prevDisabled: page === 1, nextDisabled: page === totalPages,
+      prevOp: page === 1 ? 0.5 : 1, nextOp: page === totalPages ? 0.5 : 1,
+    };
+  }
+}
+</script>
+</body>
+</html>

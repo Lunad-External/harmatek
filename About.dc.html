@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>About Us | HarmaTek</title>
+<meta name="description" content="Learn about Bright Solution Company (HarmaTek) - Leading industrial services and electronics maintenance provider in KSA.">
+<link rel="icon" href="public/favicon.ico">
+<script src="cms.js"></script>
+<script src="i18n.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;border:0 solid #dbe3ee}
+html{scroll-behavior:smooth;line-height:1.5}
+body{margin:0;background:#ffffff;color:#0f1f33;font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+h1,h2,h3,h4,h5,h6{font-family:'Space Grotesk',sans-serif;margin:0;font-size:inherit;font-weight:inherit}
+p,ul{margin:0;padding:0}ul{list-style:none}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}a:hover{color:#014995}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #ffffff; position: relative; overflow: hidden;">
+  <dc-import name="Header" hint-size="100%,120px"></dc-import>
+  <main style="position: relative; padding: 136px 0 64px;">
+    <div style="position: absolute; top: 160px; left: 0; width: 128px; height: 256px; background: #014995; transform: translateX(-64px) skewY(-12deg); z-index: 0;"></div>
+    <div style="position: absolute; bottom: 80px; right: 0; width: 256px; height: 256px; background: #014995; border-radius: 9999px; opacity: 0.2; filter: blur(64px); z-index: 0;"></div>
+    <div style="position: absolute; bottom: 0; right: 0; width: 33.333%; height: 192px; background: #014995; clip-path: polygon(100% 0, 0% 100%, 100% 100%); z-index: 0;"></div>
+    <div style="position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
+      <h1 style="font-size: {{ h1Size }}; line-height: {{ h1Lh }}; font-weight: 700; text-align: center; color: #0f1f33; margin-bottom: 48px;" data-cms="about.title">About us</h1>
+      <div style="max-width: 896px; margin: 0 auto 64px; text-align: center; display: flex; flex-direction: column; gap: 24px; color: #55657a; font-weight: 500; line-height: 1.625;">
+        <p data-cms="about.p1">We are a specialized industrial engineering services company providing integrated solutions in the design and manufacturing of machines, production lines, and industrial , in addition to manufacturing spare parts and industrial components with high quality standards.</p>
+        <p data-cms="about.p2">Our team combines engineering expertise with modern technologies to deliver efficient, accurate, and reliable solutions that meet our clients’ operational needs while ensuring quality, safety, and on-time delivery.</p>
+        <p data-ar-dup="" style="text-align: center; font-size: 18px; line-height: 28px;" data-cms="about.p3">نحن شركة متخصصة في الخدمات الهندسية الصناعية، نقدم حلولًا متكاملة تشمل تصميم وتنفيذ الماكينات وخطوط الإنتاج بالإضافة إلى قطع الغيار والمكونات الصناعية بأعلى معايير الجوده</p>
+      </div>
+      <div style="display: grid; grid-template-columns: {{ cols }}; gap: 32px; align-items: start; max-width: 1152px; margin: 0 auto;">
+        <sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ images }}" as="it" hint-placeholder-count="0">
+        <div style="border-radius: 12px; overflow: hidden; height: 320px; width: 100%; background: #e5e7eb; box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);">
+          <div role="img" aria-label="{{ it.alt }}" style="width: 100%; height: 100%;  transition: transform 0.5s; background-image: url('{{ it.image }}'); background-size: cover; background-position: center;" style-hover="transform: scale(1.05);"></div>
+        </div>
+        </sc-for></sc-if>
+      </div>
+      <div style="display: grid; grid-template-columns: {{ cols }}; gap: 48px; align-items: center; max-width: 1152px; margin: 48px auto 80px; position: relative;">
+        <div style="position: absolute; left: -80px; top: 0; width: 256px; height: 256px; background: #014995; border-radius: 9999px; opacity: 0.1; filter: blur(64px); z-index: -10;"></div>
+        <div style="color: #55657a;">
+          <h2 style="font-size: {{ h2Size }}; line-height: {{ h2Lh }}; font-weight: 700; color: #0f1f33; margin-bottom: 24px;" data-cms="about.automationTitle">Automation</h2>
+          <div style="font-weight: 500; line-height: 1.625;">
+            <p data-cms="about.automationText">We have an integrated team specialized in modernizing machinery and production lines. Our engineers are well qualified and expert in making a machine run utilizing all the hardware that is available in the side and make machine run with efficiency. These operations include changing the PLC and all other control devices (HMI, Inverter and servo drive...etc.) according to customer requirements.</p>
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </div>
+  </main>
+  <dc-import name="Footer" hint-size="100%,360px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { w: window.innerWidth };
+  componentDidMount() {
+    if (!window.HT_CMS) this.cmsPoll = setInterval(() => { if (window.HT_CMS) { clearInterval(this.cmsPoll); this.forceUpdate(); } }, 30);
+    this.onCms = () => this.forceUpdate(); window.addEventListener('ht-cms', this.onCms);
+this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR); }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); }
+  renderVals() {
+    const md = this.state.w >= 768;
+    const C = window.HT_CMS;
+    return {
+      ready_: !!C,
+      images: (C && C.get('about.images')) || [],
+      pad: md ? '32px' : '16px',
+      h1Size: md ? '48px' : '36px',
+      h1Lh: md ? '1' : '40px',
+      h2Size: md ? '36px' : '30px',
+      h2Lh: md ? '40px' : '36px',
+      cols: md ? 'repeat(2, minmax(0, 1fr))' : 'minmax(0, 1fr)',
+    };
+  }
+}
+</script>
+</body>
+</html>

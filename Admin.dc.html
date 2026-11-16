@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Admin Panel | HarmaTek</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="public/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=Tajawal:wght@400;500;700&amp;display=swap">
+<script src="admin-i18n.js"></script>
+<script src="cms.js"></script>
+<script src="products-data.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;border:0 solid #dbe3ee}
+html{line-height:1.5}
+body{margin:0;background:#f4f7fb;color:#0f1f33;font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;margin:0;font-weight:inherit;font-size:inherit}
+p,ul{margin:0;padding:0}
+a{color:#014995;text-decoration:none}a:hover{color:#FD5E00}
+button,input,textarea,select{font:inherit;color:inherit;margin:0}
+input::placeholder,textarea::placeholder{color:#8a97a8}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#014995 !important;box-shadow:0 0 0 3px rgb(1 73 149 / 0.15)}
+textarea[dir=rtl],input[dir=rtl]{font-family:'Tajawal','Outfit',sans-serif}
+</style>
+</helmet>
+<div style="min-height: 100vh;">
+  <sc-if value="{{ showLogin }}" hint-placeholder-val="{{ true }}">
+    <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; background: linear-gradient(160deg, #012a57 0%, #014995 100%);">
+      <form onSubmit="{{ login }}" style="width: 100%; max-width: 420px; background: #ffffff; border-radius: 20px; padding: 40px 36px; box-shadow: 0 30px 80px rgb(0 0 0 / 0.3); display: flex; flex-direction: column; gap: 18px;">
+        <img src="src/assets/images/harmatek-logo-horizontal.png" alt="HarmaTek" style="width: 260px; max-width: 100%; height: auto; margin: 0 auto 8px; display: block;">
+        <div style="text-align: center;">
+          <h1 style="font-size: 24px; line-height: 32px; font-weight: 700;">Admin Panel</h1>
+          <p style="font-size: 14px; color: #55657a;">Sign in to manage website content</p>
+        </div>
+        <div>
+          <label for="u" style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Username</label>
+          <input id="u" value="{{ user }}" onChange="{{ onUser }}" autocomplete="username" style="width: 100%; height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #dbe3ee; background: #f9fbfd;">
+        </div>
+        <div>
+          <label for="p" style="display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px;">Password</label>
+          <input id="p" type="password" value="{{ pass }}" onChange="{{ onPass }}" autocomplete="current-password" style="width: 100%; height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid #dbe3ee; background: #f9fbfd;">
+        </div>
+        <sc-if value="{{ loginError }}" hint-placeholder-val="{{ false }}">
+          <p style="font-size: 14px; color: #c62828; background: #fdecea; border-radius: 8px; padding: 8px 12px;">Incorrect username or password.</p>
+        </sc-if>
+        <button type="submit" style="height: 46px; border-radius: 10px; background: #014995; color: #ffffff; font-weight: 600; font-size: 16px; cursor: pointer;" style-hover="background: #013a78;">Sign in</button>
+        <a href="Home.dc.html" style="text-align: center; font-size: 14px;">← Back to website</a>
+        <div style="display: flex; gap: 6px; align-items: center; justify-content: center;">
+          <button onClick="{{ setEn }}" style="height: 30px; padding: 0 12px; border-radius: 9999px; font-size: 13px; font-weight: 600; cursor: pointer; background: {{ enBg }}; color: {{ enColor }}; border: 1px solid {{ pillBorder }};">English</button>
+          <button onClick="{{ setAr }}" style="height: 30px; padding: 0 12px; border-radius: 9999px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Tajawal', sans-serif; background: {{ arBg }}; color: {{ arColor }}; border: 1px solid {{ pillBorder }};">العربية</button>
+        </div>
+      </form>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ showApp }}" hint-placeholder-val="{{ false }}">
+    <div style="display: flex; min-height: 100vh;">
+      <aside style="width: 250px; flex-shrink: 0; background: #012a57; color: #ffffff; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh;">
+        <div style="padding: 22px 20px; border-bottom: 1px solid rgb(255 255 255 / 0.1); display: flex; align-items: center; gap: 10px;">
+          <img src="src/assets/images/harmatek-symbol-t.png" alt="HarmaTek" style="height: 40px; width: auto;">
+          <div>
+            <p style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 18px; line-height: 22px;">HarmaTek</p>
+            <p style="font-size: 12px; color: rgb(255 255 255 / 0.6);">Admin Panel</p>
+          </div>
+        </div>
+        <nav style="padding: 16px 12px; display: flex; flex-direction: column; gap: 4px; flex: 1;">
+          <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="6">
+            <button onClick="{{ n.go }}" style="display: flex; align-items: center; gap: 10px; width: 100%; text-align: start; padding: 10px 14px; border-radius: 10px; font-size: 15px; font-weight: 500; cursor: pointer; background: {{ n.bg }}; color: {{ n.color }};">
+              <span style="width: 8px; height: 8px; border-radius: 9999px; background: {{ n.dot }};"></span>{{ n.label }}
+            </button>
+          </sc-for>
+        </nav>
+        <div style="padding: 16px 12px; border-top: 1px solid rgb(255 255 255 / 0.1); display: flex; flex-direction: column; gap: 6px; font-size: 14px;">
+          <div style="display: flex; gap: 6px; align-items: center; justify-content: center;">
+          <button onClick="{{ setEn }}" style="height: 30px; padding: 0 12px; border-radius: 9999px; font-size: 13px; font-weight: 600; cursor: pointer; background: {{ enBgD }}; color: {{ enColorD }}; border: 1px solid {{ pillBorderD }};">English</button>
+          <button onClick="{{ setAr }}" style="height: 30px; padding: 0 12px; border-radius: 9999px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Tajawal', sans-serif; background: {{ arBgD }}; color: {{ arColorD }}; border: 1px solid {{ pillBorderD }};">العربية</button>
+        </div>
+          <a href="Home.dc.html" target="_blank" style="color: rgb(255 255 255 / 0.85); padding: 8px 14px;" style-hover="color: #FD5E00;">View website ↗</a>
+          <button onClick="{{ logout }}" style="margin-top: 6px; text-align: start; padding: 8px 14px; border-radius: 10px; background: rgb(255 255 255 / 0.08); color: #ffffff; cursor: pointer;">Sign out</button>
+        </div>
+      </aside>
+
+      <main style="flex: 1; min-width: 0;">
+        <div style="position: sticky; top: 0; z-index: 20; background: rgb(244 247 251 / 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid #dbe3ee;">
+          <div style="max-width: 1040px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+            <div>
+              <h2 style="font-size: 26px; line-height: 32px; font-weight: 700;">{{ sectionLabel }}</h2>
+              <sc-if value="{{ hasPage }}" hint-placeholder-val="{{ true }}"><a href="{{ sectionPage }}" target="_blank" style="font-size: 13px;">Open page ↗</a></sc-if>
+            </div>
+            <div style="display: {{ barDisplay }}; align-items: center; gap: 12px;">
+              <sc-if value="{{ dirty }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size: 13px; font-weight: 600; color: #FD5E00;">● Unsaved changes</span>
+              </sc-if>
+              <button onClick="{{ resetSection }}" style="white-space: nowrap; height: 40px; padding: 0 16px; border-radius: 10px; background: #ffffff; border: 1px solid #dbe3ee; font-weight: 500; cursor: pointer;" style-hover="border-color: #014995;">Reset section</button>
+              <button onClick="{{ save }}" style="white-space: nowrap; height: 40px; padding: 0 22px; border-radius: 10px; background: #014995; color: #ffffff; font-weight: 600; cursor: pointer;" style-hover="background: #013a78;">Save changes</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="max-width: 1040px; margin: 0 auto; padding: 24px 32px 80px; display: flex; flex-direction: column; gap: 24px;">
+          <p style="display: {{ barDisplay }}; font-size: 13px; color: #55657a; background: #fff7ed; border: 1px solid #fed7aa; border-radius: 10px; padding: 10px 14px;">Edits are saved in this browser and show on the website immediately for this browser. Arabic fields are optional — leave empty to use the built-in translation.</p>
+
+          <sc-for list="{{ groups }}" as="g" hint-placeholder-count="2">
+            <section style="background: #ffffff; border: 1px solid #dbe3ee; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 18px;">
+              <div>
+                <h3 style="font-size: 18px; line-height: 24px; font-weight: 700; color: #014995;">{{ g.title }}</h3>
+                <sc-if value="{{ g.note }}" hint-placeholder-val="{{ false }}"><p style="font-size: 13px; color: #55657a; margin-top: 4px;">{{ g.note }}</p></sc-if>
+              </div>
+              <sc-for list="{{ g.fields }}" as="f" hint-placeholder-count="2">
+                <div style="display: flex; flex-direction: column; gap: 6px;">
+                  <label style="font-size: 13px; font-weight: 600; color: #33465c;">{{ f.label }}</label>
+                  <sc-if value="{{ f.isText }}" hint-placeholder-val="{{ true }}"><input value="{{ f.value }}" onChange="{{ f.onChange }}" style="width: 100%; height: 40px; padding: 0 12px; border-radius: 8px; border: 1px solid #dbe3ee; background: #f9fbfd;"></sc-if>
+                  <sc-if value="{{ f.isArea }}" hint-placeholder-val="{{ false }}"><textarea value="{{ f.value }}" onChange="{{ f.onChange }}" rows="{{ f.rows }}" dir="{{ f.dir }}" style="width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid #dbe3ee; background: #f9fbfd; resize: vertical;"></textarea></sc-if>
+                  <sc-if value="{{ f.isMedia }}" hint-placeholder-val="{{ false }}">
+                    <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+                      <sc-if value="{{ f.isImage }}" hint-placeholder-val="{{ false }}"><div style="width: 120px; height: 80px; flex-shrink: 0; border-radius: 8px; border: 1px solid #dbe3ee; background-color: #eef2f7; background-size: cover; background-position: center; background-image: {{ f.preview }};"></div></sc-if>
+                      <div style="flex: 1; min-width: 220px; display: flex; flex-direction: column; gap: 6px;">
+                        <input value="{{ f.shown }}" onChange="{{ f.onChange }}" placeholder="Paste a URL or upload a file" style="width: 100%; height: 40px; padding: 0 12px; border-radius: 8px; border: 1px solid #dbe3ee; background: #f9fbfd;">
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                          <label style="display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 8px; background: #014995; color: #ffffff; font-size: 13px; font-weight: 600; cursor: pointer;">Upload<input type="file" accept="{{ f.accept }}" onChange="{{ f.onUpload }}" style="display: none;"></label>
+                          <sc-if value="{{ f.isUploaded }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #2e7d32;">Uploaded file stored</span></sc-if>
+                        </div>
+                      </div>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ f.hasAr }}" hint-placeholder-val="{{ false }}">
+                    <textarea value="{{ f.arValue }}" onChange="{{ f.onAr }}" rows="{{ f.arRows }}" dir="rtl" placeholder="Arabic (optional)" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px dashed #c9d5e3; background: #ffffff; resize: vertical; font-size: 14px;"></textarea>
+                  </sc-if>
+                  <sc-if value="{{ f.hint }}" hint-placeholder-val="{{ false }}"><p style="font-size: 12px; color: #55657a;">{{ f.hint }}</p></sc-if>
+                </div>
+              </sc-for>
+
+              <sc-for list="{{ g.lists }}" as="l" hint-placeholder-count="0">
+                <div style="border-top: 1px solid #eaeff6; padding-top: 18px; display: flex; flex-direction: column; gap: 12px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                    <p style="font-size: 15px; font-weight: 700;">{{ l.label }} <span style="font-weight: 500; color: #55657a;">({{ l.count }})</span></p>
+                    <button onClick="{{ l.add }}" style="height: 34px; padding: 0 14px; border-radius: 8px; background: #FD5E00; color: #ffffff; font-size: 13px; font-weight: 600; cursor: pointer;">+ Add</button>
+                  </div>
+                  <sc-for list="{{ l.items }}" as="it" hint-placeholder-count="0">
+                    <div style="border: 1px solid #dbe3ee; border-radius: 12px; padding: 14px; background: #fbfcfe; display: flex; flex-direction: column; gap: 12px;">
+                      <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-size: 13px; font-weight: 600; color: #014995;">#{{ it.num }}</span>
+                        <div style="display: flex; gap: 6px;">
+                          <button onClick="{{ it.up }}" title="Move up" style="width: 30px; height: 30px; border-radius: 6px; background: #ffffff; border: 1px solid #dbe3ee; cursor: pointer;">↑</button>
+                          <button onClick="{{ it.down }}" title="Move down" style="width: 30px; height: 30px; border-radius: 6px; background: #ffffff; border: 1px solid #dbe3ee; cursor: pointer;">↓</button>
+                          <button onClick="{{ it.remove }}" style="height: 30px; padding: 0 10px; border-radius: 6px; background: #fdecea; color: #c62828; font-size: 13px; font-weight: 600; cursor: pointer;">Delete</button>
+                        </div>
+                      </div>
+                      <sc-for list="{{ it.fields }}" as="f" hint-placeholder-count="0">
+                        <div style="display: flex; flex-direction: column; gap: 6px;">
+                          <label style="font-size: 12px; font-weight: 600; color: #33465c;">{{ f.label }}</label>
+                          <sc-if value="{{ f.isText }}" hint-placeholder-val="{{ false }}"><input value="{{ f.value }}" onChange="{{ f.onChange }}" style="width: 100%; height: 38px; padding: 0 12px; border-radius: 8px; border: 1px solid #dbe3ee; background: #ffffff;"></sc-if>
+                          <sc-if value="{{ f.isArea }}" hint-placeholder-val="{{ false }}"><textarea value="{{ f.value }}" onChange="{{ f.onChange }}" rows="{{ f.rows }}" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #dbe3ee; background: #ffffff; resize: vertical;"></textarea></sc-if>
+                          <sc-if value="{{ f.isMedia }}" hint-placeholder-val="{{ false }}">
+                            <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                              <sc-if value="{{ f.isImage }}" hint-placeholder-val="{{ false }}"><div style="width: 96px; height: 64px; flex-shrink: 0; border-radius: 8px; border: 1px solid #dbe3ee; background-color: #eef2f7; background-size: cover; background-position: center; background-image: {{ f.preview }};"></div></sc-if>
+                              <div style="flex: 1; min-width: 200px; display: flex; gap: 8px; align-items: center;">
+                                <input value="{{ f.shown }}" onChange="{{ f.onChange }}" placeholder="Paste a URL or upload" style="flex: 1; min-width: 0; height: 38px; padding: 0 12px; border-radius: 8px; border: 1px solid #dbe3ee; background: #ffffff;">
+                                <label style="display: inline-flex; align-items: center; height: 38px; padding: 0 12px; border-radius: 8px; background: #014995; color: #ffffff; font-size: 13px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Upload<input type="file" accept="{{ f.accept }}" onChange="{{ f.onUpload }}" style="display: none;"></label>
+                              </div>
+                            </div>
+                          </sc-if>
+                          <sc-if value="{{ f.hasAr }}" hint-placeholder-val="{{ false }}">
+                            <input value="{{ f.arValue }}" onChange="{{ f.onAr }}" dir="rtl" placeholder="Arabic (optional)" style="width: 100%; height: 36px; padding: 0 12px; border-radius: 8px; border: 1px dashed #c9d5e3; background: #ffffff; font-size: 14px;">
+                          </sc-if>
+                          <sc-if value="{{ f.hint }}" hint-placeholder-val="{{ false }}"><p style="font-size: 12px; color: #55657a;">{{ f.hint }}</p></sc-if>
+                        </div>
+                      </sc-for>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-for>
+            </section>
+          </sc-for>
+
+          <sc-if value="{{ isHelp }}" hint-placeholder-val="{{ false }}">
+            <sc-for list="{{ helpItems }}" as="h" hint-placeholder-count="0">
+              <section style="background: #ffffff; border: 1px solid #dbe3ee; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+                <h3 style="font-size: 18px; line-height: 24px; font-weight: 700; color: #014995;">{{ h.title }}</h3>
+                <ol style="margin: 0; padding-inline-start: 22px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 24px; color: #33465c;">
+                  <sc-for list="{{ h.steps }}" as="s" hint-placeholder-count="0"><li>{{ s }}</li></sc-for>
+                </ol>
+                <sc-if value="{{ h.hasImg }}" hint-placeholder-val="{{ false }}">
+                  <div role="img" aria-label="{{ h.title }}" style="width: 100%; aspect-ratio: {{ h.ratio }}; border-radius: 12px; border: 1px solid #dbe3ee; background-color: #eef2f7; background-size: contain; background-repeat: no-repeat; background-position: center; background-image: {{ h.img }};"></div>
+                </sc-if>
+              </section>
+            </sc-for>
+          </sc-if>
+          <sc-if value="{{ isProducts }}" hint-placeholder-val="{{ false }}">
+            <section style="background: #ffffff; border: 1px solid #dbe3ee; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+                <div>
+                  <h3 style="font-size: 18px; line-height: 24px; font-weight: 700; color: #014995;">Product catalogue</h3>
+                  <p style="font-size: 13px; color: #55657a;">{{ catCount }} products · changes here save instantly</p>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <button onClick="{{ catReset }}" style="height: 38px; padding: 0 14px; border-radius: 8px; background: #ffffff; border: 1px solid #dbe3ee; font-size: 13px; font-weight: 500; cursor: pointer;">Reset catalogue</button>
+                  <button onClick="{{ catAdd }}" style="height: 38px; padding: 0 16px; border-radius: 8px; background: #FD5E00; color: #ffffff; font-size: 14px; font-weight: 600; cursor: pointer;">+ Add product</button>
+                </div>
+              </div>
+
+              <sc-if value="{{ editing }}" hint-placeholder-val="{{ false }}">
+                <div style="border: 2px solid #014995; border-radius: 12px; padding: 18px; background: #f7faff; display: flex; flex-direction: column; gap: 12px;">
+                  <p style="font-weight: 700; color: #014995;">{{ editTitle }}</p>
+                  <sc-for list="{{ editFields }}" as="f" hint-placeholder-count="0">
+                    <div style="display: flex; flex-direction: column; gap: 6px;">
+                      <label style="font-size: 12px; font-weight: 600; color: #33465c;">{{ f.label }}</label>
+                      <sc-if value="{{ f.isText }}" hint-placeholder-val="{{ false }}"><input value="{{ f.value }}" onChange="{{ f.onChange }}" dir="{{ f.dir }}" style="width: 100%; height: 38px; padding: 0 12px; border-radius: 8px; border: 1px solid #dbe3ee; background: #ffffff;"></sc-if>
+                      <sc-if value="{{ f.isArea }}" hint-placeholder-val="{{ false }}"><textarea value="{{ f.value }}" onChange="{{ f.onChange }}" rows="{{ f.rows }}" dir="{{ f.dir }}" style="width: 100%; padding: 8px 12px; border-radius: 8px; border: 1px solid #dbe3ee; background: #ffffff; resize: vertical;"></textarea></sc-if>
+                      <sc-if value="{{ f.isMedia }}" hint-placeholder-val="{{ false }}">
+                        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                          <div style="width: 96px; height: 72px; flex-shrink: 0; border-radius: 8px; border: 1px solid #dbe3ee; background-color: #eef2f7; background-size: contain; background-repeat: no-repeat; background-position: center; background-image: {{ f.preview }};"></div>
+                          <div style="flex: 1; min-width: 200px; display: flex; gap: 8px; align-items: center;">
+                            <input value="{{ f.shown }}" onChange="{{ f.onChange }}" placeholder="Image file name, URL, or upload" style="flex: 1; min-width: 0; height: 38px; padding: 0 12px; border-radius: 8px; border: 1px solid #dbe3ee; background: #ffffff;">
+                            <label style="display: inline-flex; align-items: center; height: 38px; padding: 0 12px; border-radius: 8px; background: #014995; color: #ffffff; font-size: 13px; font-weight: 600; cursor: pointer; flex-shrink: 0;">Upload<input type="file" accept="image/*" onChange="{{ f.onUpload }}" style="display: none;"></label>
+                          </div>
+                        </div>
+                      </sc-if>
+                      <sc-if value="{{ f.hint }}" hint-placeholder-val="{{ false }}"><p style="font-size: 12px; color: #55657a;">{{ f.hint }}</p></sc-if>
+                    </div>
+                  </sc-for>
+                  <div style="display: flex; gap: 8px; justify-content: flex-end;">
+                    <button onClick="{{ editCancel }}" style="height: 38px; padding: 0 16px; border-radius: 8px; background: #ffffff; border: 1px solid #dbe3ee; font-weight: 500; cursor: pointer;">Cancel</button>
+                    <button onClick="{{ editSave }}" style="height: 38px; padding: 0 18px; border-radius: 8px; background: #014995; color: #ffffff; font-weight: 600; cursor: pointer;">Save product</button>
+                  </div>
+                </div>
+              </sc-if>
+
+              <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                <input value="{{ catQ }}" onChange="{{ onCatQ }}" placeholder="Search by name, description or brand…" style="flex: 1; min-width: 220px; height: 40px; padding: 0 12px; border-radius: 8px; border: 1px solid #dbe3ee; background: #f9fbfd;">
+                <span style="font-size: 13px; color: #55657a;">{{ catRange }}</span>
+              </div>
+              <div style="border: 1px solid #dbe3ee; border-radius: 12px; overflow: hidden;">
+                <sc-for list="{{ catRows }}" as="r" hint-placeholder-count="0">
+                  <div style="display: flex; align-items: center; gap: 14px; padding: 10px 14px; border-bottom: 1px solid #eaeff6; background: #ffffff;" style-hover="background: #f9fbfd;">
+                    <div style="width: 52px; height: 52px; flex-shrink: 0; border-radius: 8px; background-color: #eef2f7; background-size: contain; background-repeat: no-repeat; background-position: center; background-image: {{ r.thumb }};"></div>
+                    <div style="flex: 1; min-width: 0;">
+                      <p style="font-size: 14px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ r.title }}</p>
+                      <p style="font-size: 12px; color: #55657a;">{{ r.brand }}</p>
+                    </div>
+                    <button onClick="{{ r.edit }}" style="height: 32px; padding: 0 12px; border-radius: 6px; background: #eef4fb; color: #014995; font-size: 13px; font-weight: 600; cursor: pointer;">Edit</button>
+                    <button onClick="{{ r.del }}" style="height: 32px; padding: 0 12px; border-radius: 6px; background: #fdecea; color: #c62828; font-size: 13px; font-weight: 600; cursor: pointer;">Delete</button>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
+                <button onClick="{{ catPrev }}" style="height: 34px; padding: 0 14px; border-radius: 8px; background: #ffffff; border: 1px solid #dbe3ee; cursor: pointer;">← Prev</button>
+                <span style="font-size: 13px; color: #55657a;">Page {{ catPage }} of {{ catPages }}</span>
+                <button onClick="{{ catNext }}" style="height: 34px; padding: 0 14px; border-radius: 8px; background: #ffffff; border: 1px solid #dbe3ee; cursor: pointer;">Next →</button>
+              </div>
+            </section>
+          </sc-if>
+        </div>
+      </main>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; bottom: 24px; right: 24px; z-index: 100; padding: 12px 18px; border-radius: 10px; background: #0f1f33; color: #ffffff; font-size: 14px; font-weight: 500; box-shadow: 0 10px 30px rgb(0 0 0 / 0.25);">{{ toast }}</div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SCHEMA = {
+  home: { label: 'Home', page: 'Home.dc.html', groups: [
+    { title: 'Hero section', note: 'The brochure cards in the hero are managed in the Brochure section.', fields: [['heroBadge', 'Badge text', 'text', 1], ['heroP1', 'Main paragraph', 'area', 1], ['heroP2', 'Second paragraph', 'area', 1], ['heroP3', 'Arabic paragraph (shown in English mode, hidden in Arabic mode)', 'area', 0], ['heroButton', 'Button label', 'text', 1]],
+      lists: [{ key: 'heroSlides', label: 'Background slideshow images', item: [['image', 'Image', 'image', 0]] }, { key: 'heroStats', label: 'Stats', item: [['value', 'Value', 'text', 0], ['label', 'Label', 'text', 1]] }] },
+    { title: 'Products preview', fields: [['productsBadge', 'Badge', 'text', 1], ['productsTitle', 'Heading (first part)', 'text', 1], ['productsHighlight', 'Heading (highlighted part)', 'text', 1], ['productsIntro', 'Intro text', 'area', 1], ['productsButton', 'Button label', 'text', 1]],
+      lists: [{ key: 'productCards', label: 'Product cards', item: [['title', 'Title', 'text', 1], ['description', 'Description', 'area', 1], ['image', 'Image', 'image', 0], ['features', 'Features (one per line)', 'area', 0]] }] },
+    { title: 'Why choose us', fields: [['whyTitle', 'Heading (first part)', 'text', 1], ['whyHighlight', 'Heading (highlighted part)', 'text', 1], ['whyIntro', 'Intro text', 'area', 1]],
+      lists: [{ key: 'whyItems', label: 'Feature cards', item: [['title', 'Title', 'text', 1], ['description', 'Description', 'area', 1]] }] },
+    { title: 'About preview', fields: [['aboutBadge', 'Badge', 'text', 1], ['aboutTitle', 'Heading (first part)', 'text', 1], ['aboutHighlight', 'Heading (highlighted part)', 'text', 1], ['aboutP1', 'Paragraph 1', 'area', 1], ['aboutP2', 'Paragraph 2', 'area', 1], ['missionTitle', 'Mission title', 'text', 1], ['missionText', 'Mission text', 'area', 1]],
+      lists: [{ key: 'aboutStats', label: 'Stats cards', item: [['value', 'Value', 'text', 0], ['label', 'Label', 'text', 1]] }] },
+    { title: 'Contact preview', fields: [['contactBadge', 'Badge', 'text', 1], ['contactTitle', 'Heading (first part)', 'text', 1], ['contactHighlight', 'Heading (highlighted part)', 'text', 1], ['contactIntro', 'Intro text', 'area', 1], ['contactInfoTitle', 'Info title', 'text', 1], ['contactInfoText', 'Info text', 'area', 1]],
+      lists: [{ key: 'contactItems', label: 'Contact items', item: [['label', 'Label', 'text', 1], ['value', 'Value', 'text', 0], ['href', 'Link (mailto:, tel:, or URL)', 'text', 0]] }] }
+  ] },
+  products: { label: 'Products', page: 'Products.dc.html', catalog: true, groups: [
+    { title: 'Page banner', fields: [['bannerTitle', 'Heading (first part)', 'text', 1], ['bannerHighlight', 'Heading (highlighted part)', 'text', 1], ['bannerP1', 'Paragraph', 'area', 1], ['bannerP2', 'Arabic paragraph (shown in English mode)', 'area', 0]],
+      lists: [{ key: 'bannerSlides', label: 'Banner slideshow images', item: [['image', 'Image', 'image', 0]] }] },
+    { title: 'Bottom call to action', fields: [['ctaText', 'Text', 'area', 1], ['ctaButton', 'Button label', 'text', 1]], lists: [] }
+  ] },
+  brochures: { label: 'Brochure', page: 'Brochures.dc.html', groups: [
+    { title: 'Page heading', fields: [['titleA', 'Heading (first part)', 'text', 1], ['titleB', 'Heading (highlighted part)', 'text', 1]], lists: [] },
+    { title: 'Brochures', note: 'Also shown as the download cards in the Home hero.', fields: [], lists: [{ key: 'items', label: 'Brochures', item: [['title', 'Title', 'text', 1], ['image', 'Cover image', 'image', 0], ['pdf', 'PDF file', 'file', 0, 'Paste a PDF link, or upload a small PDF (under 3 MB).']] }] }
+  ] },
+  about: { label: 'About', page: 'About.dc.html', groups: [
+    { title: 'Introduction', fields: [['title', 'Page title', 'text', 1], ['p1', 'Paragraph 1', 'area', 1], ['p2', 'Paragraph 2', 'area', 1], ['p3', 'Arabic paragraph (shown in English mode)', 'area', 0]], lists: [{ key: 'images', label: 'Images', item: [['image', 'Image', 'image', 0], ['alt', 'Image description', 'text', 0]] }] },
+    { title: 'Automation', fields: [['automationTitle', 'Title', 'text', 1], ['automationText', 'Text', 'area', 1]], lists: [] }
+  ] },
+  contact: { label: 'Contact', page: 'Contact.dc.html', groups: [
+    { title: 'Contact card', fields: [['image', 'Header image', 'image', 0], ['cardTitle', 'Company name', 'text', 1], ['tagline', 'Tagline', 'area', 1], ['email', 'Email', 'text', 0], ['location', 'Location', 'text', 1]],
+      lists: [{ key: 'phones', label: 'Phone numbers', item: [['number', 'Phone number', 'text', 0]] }] },
+    { title: 'Locations', fields: [['locationsTitle', 'Heading (first part)', 'text', 1], ['locationsHighlight', 'Heading (highlighted part)', 'text', 1]],
+      lists: [{ key: 'locations', label: 'Addresses', item: [['label', 'Label', 'text', 1], ['address', 'Address', 'text', 1], ['map', 'Google Maps embed link', 'map', 0, 'Paste the Google Maps embed URL or the full <iframe> code.']] }] }
+  ] },
+  help: { label: 'Help', page: '', groups: [] },
+  whatsapp: { label: 'WhatsApp', page: 'Home.dc.html', groups: [
+    { title: 'WhatsApp settings', fields: [['number', 'WhatsApp number (with country code, digits only)', 'text', 0], ['message', 'Default message (floating WhatsApp button)', 'area', 0], ['enquiryButton', 'Product card button label', 'text', 1], ['enquiryMessage', 'Product enquiry message', 'area', 0, 'Use {product} where the product name should appear.']], lists: [] }
+  ] }
+};
+const ORDER = ['home', 'products', 'brochures', 'about', 'contact', 'whatsapp', 'help'];
+const HELP = [{"t":"Signing in","ta":"تسجيل الدخول","img":"login.jpg","s":["Open the Admin link in the website footer.","Enter your username and password, then click Sign in.","Use the English / العربية buttons to switch the admin panel language at any time.","Click Sign out in the sidebar when you finish."],"sa":["افتح رابط «لوحة التحكم» في تذييل الموقع.","أدخل اسم المستخدم وكلمة المرور ثم اضغط «تسجيل الدخول».","استخدم زرّي English / العربية لتغيير لغة لوحة التحكم في أي وقت.","اضغط «تسجيل الخروج» في القائمة الجانبية عند الانتهاء."]},{"t":"Editing page text","ta":"تعديل نصوص الصفحات","img":"home.jpg","s":["Choose a page from the sidebar: Home, Products, Brochure, About, Contact or WhatsApp.","Each box shows the text currently on the website. Change it as needed.","The dashed box under a field is for the Arabic version. Leave it empty to keep the built-in translation.","Click Save changes at the top. An orange “Unsaved changes” label shows until you save.","Click Open page ↗ to check the result on the website."],"sa":["اختر صفحة من القائمة الجانبية: الرئيسية أو المنتجات أو الكتيبات أو من نحن أو اتصل بنا أو واتساب.","يعرض كل حقل النص الموجود حاليًا على الموقع. عدّله حسب الحاجة.","الحقل المنقّط أسفل كل حقل مخصص للنسخة العربية. اتركه فارغًا للإبقاء على الترجمة المدمجة.","اضغط «حفظ التغييرات» في الأعلى. تظهر عبارة «تغييرات غير محفوظة» باللون البرتقالي حتى تحفظ.","اضغط «فتح الصفحة ↗» لمراجعة النتيجة على الموقع."]},{"t":"Adding, deleting and reordering items","ta":"إضافة العناصر وحذفها وترتيبها","img":"lists.jpg","s":["Lists such as slideshow images, stats, cards, phone numbers and locations show each item as a numbered card.","Click + Add to add a new item at the end of the list, then fill in its fields.","Use ↑ and ↓ to change the order, and Delete to remove an item.","Click Save changes to publish the list."],"sa":["تظهر القوائم مثل صور العرض والإحصائيات والبطاقات وأرقام الهاتف والمواقع كبطاقات مرقّمة.","اضغط «+ إضافة» لإضافة عنصر جديد في نهاية القائمة ثم املأ حقوله.","استخدم ↑ و ↓ لتغيير الترتيب، و«حذف» لإزالة عنصر.","اضغط «حفظ التغييرات» لنشر القائمة."]},{"t":"Changing images","ta":"تغيير الصور","img":"banner-images.jpg","s":["Every image field shows a preview of the current image.","Click Upload to choose an image from your computer. Large images are resized automatically.","Or paste a full image link (https://…) into the box.","Click Save changes to apply the new image."],"sa":["يعرض كل حقل صورة معاينة للصورة الحالية.","اضغط «رفع» لاختيار صورة من جهازك. يتم تصغير الصور الكبيرة تلقائيًا.","أو الصق رابط صورة كاملًا (https://…) في الحقل.","اضغط «حفظ التغييرات» لتطبيق الصورة الجديدة."]},{"t":"Managing the product catalogue","ta":"إدارة كتالوج المنتجات","img":"catalog.jpg","s":["Open Products in the sidebar and scroll to Product catalogue.","Search by product name, description or brand, and use Prev / Next to move between pages.","Click + Add product to create a new product. It appears first on the Products page.","Click Delete on a row to remove that product.","Catalogue changes save instantly. Reset catalogue restores the original 645 products."],"sa":["افتح «المنتجات» من القائمة الجانبية وانتقل إلى «كتالوج المنتجات».","ابحث باسم المنتج أو وصفه أو علامته التجارية، واستخدم السابق / التالي للتنقل بين الصفحات.","اضغط «+ إضافة منتج» لإنشاء منتج جديد، وسيظهر أولًا في صفحة المنتجات.","اضغط «حذف» في الصف لإزالة المنتج.","تُحفظ تغييرات الكتالوج فورًا. يعيد «استعادة الكتالوج» المنتجات الأصلية وعددها 645."]},{"t":"Editing a product","ta":"تعديل منتج","img":"edit-product.jpg","s":["Click Edit next to a product. The edit form opens at the top of the catalogue.","Update the name, description, brand, image and features (one feature per line).","Optionally add the Arabic name and description for Arabic visitors.","Click Save product, or Cancel to discard."],"sa":["اضغط «تعديل» بجوار المنتج، وسيفتح نموذج التعديل أعلى الكتالوج.","حدّث الاسم والوصف والعلامة التجارية والصورة والمزايا (ميزة في كل سطر).","يمكنك إضافة الاسم والوصف بالعربية للزوار العرب.","اضغط «حفظ المنتج» أو «إلغاء» للتراجع."]},{"t":"Brochures","ta":"الكتيبات","img":"brochure.jpg","s":["Open Brochure to change the page heading and the list of brochures.","For each brochure set a title, a cover image and the PDF. Paste a PDF link or upload a PDF under 3 MB.","The same brochures appear as download cards in the Home page hero."],"sa":["افتح «الكتيبات» لتغيير عنوان الصفحة وقائمة الكتيبات.","حدّد لكل كتيب عنوانًا وصورة غلاف وملف PDF. الصق رابط PDF أو ارفع ملفًا أصغر من 3 ميجابايت.","تظهر الكتيبات نفسها كبطاقات تحميل في القسم الرئيسي للصفحة الرئيسية."]},{"t":"Contact details and locations","ta":"بيانات التواصل والمواقع","img":"contact.jpg","s":["Open Contact to edit the contact card, email, phone numbers and location.","Under Locations, add or edit addresses. For the map, paste the Google Maps embed link or the full <iframe> code from Google Maps (Share → Embed a map)."],"sa":["افتح «اتصل بنا» لتعديل بطاقة التواصل والبريد الإلكتروني وأرقام الهاتف والموقع.","في «المواقع» أضف العناوين أو عدّلها. للخريطة، الصق رابط التضمين أو كود <iframe> الكامل من خرائط Google (مشاركة ← تضمين خريطة)."]},{"t":"WhatsApp","ta":"واتساب","img":"whatsapp.jpg","s":["Set the WhatsApp number with the country code, digits only (for example 966559471701).","Default message is used by the floating WhatsApp button on every page.","Product enquiry message is used by the Send Enquiry button on product cards. Keep {product} where the product name should appear."],"sa":["أدخل رقم واتساب مع رمز الدولة، أرقام فقط (مثال: 966559471701).","تُستخدم «الرسالة الافتراضية» لزر واتساب العائم في كل الصفحات.","تُستخدم «رسالة الاستفسار عن المنتج» لزر «إرسال استفسار» في بطاقات المنتجات. أبقِ {product} حيث يجب أن يظهر اسم المنتج."]},{"t":"Restoring original content","ta":"استعادة المحتوى الأصلي","s":["Reset section restores the original content of the open page. Click Save changes to confirm.","In Products, Reset catalogue restores the original product list.","Edits are stored in this browser. Ask your web developer to publish them to the live server for all visitors."],"sa":["تعيد «استعادة القسم» المحتوى الأصلي للصفحة المفتوحة. اضغط «حفظ التغييرات» للتأكيد.","في «المنتجات»، تعيد «استعادة الكتالوج» قائمة المنتجات الأصلية.","تُحفظ التعديلات في هذا المتصفح. اطلب من مطوّر موقعك نشرها على الخادم المباشر لجميع الزوار."]}];
+const T = s => (window.HT_ADMIN_T ? window.HT_ADMIN_T(s) : s);
+const AR = () => window.HT_ADMIN_LANG && window.HT_ADMIN_LANG() === 'ar';
+const RAW = 'src/assets/productImages/';
+const clone = o => JSON.parse(JSON.stringify(o));
+const prodImg = v => !v ? 'public/placeholder-product.png' : /^(https?:|data:|src\/|public\/)/.test(v) ? v : RAW + v.replace('.webp', '') + '.webp';
+
+class Component extends DCLogic {
+  state = { auth: sessionStorage.getItem('ht-admin') === '1', user: '', pass: '', loginError: false, section: 'home', draft: null, dirty: false, toast: '', catQ: '', catPage: 1, editIdx: null, edit: null, tick: 0 };
+  componentDidMount() {
+    this.onLang = () => this.forceUpdate(); window.addEventListener('ht-admin-lang', this.onLang);
+    const init = () => { if (window.HT_CMS) { clearInterval(this.poll); this.setState({ draft: clone(window.HT_CMS.all()) }); return true; } };
+    if (!init()) this.poll = setInterval(init, 30);
+    this.pollP = setInterval(() => { if (window.HARMATEK_PRODUCTS) { clearInterval(this.pollP); this.setState({ tick: this.state.tick + 1 }); } }, 100);
+  }
+  componentWillUnmount() { clearInterval(this.poll); clearInterval(this.pollP); clearTimeout(this.tt); }
+  flash(msg) { this.setState({ toast: msg }); clearTimeout(this.tt); this.tt = setTimeout(() => this.setState({ toast: '' }), 2600); }
+  setPath(path, val) {
+    const d = clone(this.state.draft); let o = d;
+    for (let i = 0; i < path.length - 1; i++) { if (o[path[i]] == null) o[path[i]] = typeof path[i + 1] === 'number' ? [] : {}; o = o[path[i]]; }
+    o[path[path.length - 1]] = val;
+    this.setState({ draft: d, dirty: true });
+  }
+  getPath(path) { let o = this.state.draft; for (const k of path) { if (o == null) return undefined; o = o[k]; } return o; }
+  readFile(file, kind) {
+    return new Promise((res, rej) => {
+      if (!file) return rej();
+      if (kind === 'pdf' && file.size > 3 * 1024 * 1024) { this.flash(T('PDF is larger than 3 MB — please paste a link instead.')); return rej(); }
+      const fr = new FileReader();
+      fr.onload = () => {
+        if (kind !== 'image' || /svg/.test(file.type)) return res(fr.result);
+        const img = new Image();
+        img.onload = () => {
+          const max = 1600, sc = Math.min(1, max / Math.max(img.width, img.height));
+          const c = document.createElement('canvas'); c.width = Math.round(img.width * sc); c.height = Math.round(img.height * sc);
+          const x = c.getContext('2d'); x.drawImage(img, 0, 0, c.width, c.height);
+          const png = /png|webp|gif/.test(file.type);
+          res(c.toDataURL(png ? 'image/webp' : 'image/jpeg', 0.85));
+        };
+        img.onerror = () => res(fr.result);
+        img.src = fr.result;
+      };
+      fr.readAsDataURL(file);
+    });
+  }
+  fieldVM(path, [key, label, type, ar, hint], compact) {
+    const p = [...path, key], v = this.getPath(p);
+    const val = v == null ? '' : String(v);
+    const isMedia = type === 'image' || type === 'file';
+    const isMap = type === 'map';
+    return {
+      label, hint: hint || '',
+      isText: type === 'text' || isMap, isArea: type === 'area', isMedia, isImage: type === 'image',
+      rows: compact ? 3 : (val.length > 160 ? 5 : 3), dir: /[\u0600-\u06FF]/.test(val) ? 'rtl' : 'ltr',
+      value: val,
+      shown: val.startsWith('data:') ? '(uploaded file)' : val,
+      isUploaded: val.startsWith('data:'),
+      preview: val ? `url("${val.replace(/"/g, '%22')}")` : 'none',
+      accept: type === 'file' ? 'application/pdf' : 'image/*',
+      onChange: e => {
+        let nv = e.target.value;
+        if (isMap) { const m = nv.match(/src="([^"]+)"/); if (m) nv = m[1]; }
+        if (isMedia && nv === '(uploaded file)') return;
+        this.setPath(p, nv);
+      },
+      onUpload: e => { const f = e.target.files && e.target.files[0]; e.target.value = ''; this.readFile(f, type === 'file' ? 'pdf' : 'image').then(url => { this.setPath(p, url); this.flash(T('File added — remember to save')); }).catch(() => {}); },
+      hasAr: !!ar, arValue: this.getPath([...path, key + '_ar']) || '', arRows: type === 'area' ? 3 : 1,
+      onAr: e => this.setPath([...path, key + '_ar'], e.target.value)
+    };
+  }
+  listVM(sec, l) {
+    const arr = this.getPath([sec, l.key]) || [];
+    const move = (i, d) => { const a = clone(arr), j = i + d; if (j < 0 || j >= a.length) return; [a[i], a[j]] = [a[j], a[i]]; this.setPath([sec, l.key], a); };
+    return {
+      label: l.label, count: arr.length,
+      add: () => { const blank = {}; l.item.forEach(([k]) => blank[k] = ''); this.setPath([sec, l.key], [...arr, blank]); },
+      items: arr.map((_, i) => ({
+        num: i + 1, up: () => move(i, -1), down: () => move(i, 1),
+        remove: () => { if (!confirm(T('Delete this item?'))) return; const a = clone(arr); a.splice(i, 1); this.setPath([sec, l.key], a); },
+        fields: l.item.map(fd => this.fieldVM([sec, l.key, i], fd, true))
+      }))
+    };
+  }
+  catalog() { return (window.HT_CMS && window.HT_CMS.products()) || []; }
+  openEdit(idx) {
+    const list = this.catalog();
+    const p = idx === 'new' ? ['', '', '', [], '', '', ''] : list[idx];
+    this.setState({ editIdx: idx, edit: { title: p[0] || '', description: p[1] || '', image: p[2] || '', features: (p[3] || []).join('\n'), brand: p[4] || '', title_ar: p[5] || '', description_ar: p[6] || '' } });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  renderVals() {
+    const S = this.state, C = window.HT_CMS;
+    const lv = (() => { const ar = AR(); const on = (x) => x ? '#014995' : 'transparent'; return { setEn: () => window.HT_ADMIN_SETLANG && window.HT_ADMIN_SETLANG('en'), setAr: () => window.HT_ADMIN_SETLANG && window.HT_ADMIN_SETLANG('ar'), enBg: on(!ar), arBg: on(ar), enColor: !ar ? '#ffffff' : '#014995', arColor: ar ? '#ffffff' : '#014995', pillBorder: '#014995', enBgD: !ar ? '#FD5E00' : 'transparent', arBgD: ar ? '#FD5E00' : 'transparent', enColorD: '#ffffff', arColorD: '#ffffff', pillBorderD: 'rgb(255 255 255 / 0.3)' }; })();
+    if (!S.auth) return {
+      ...lv,
+      showLogin: true, showApp: false, user: S.user, pass: S.pass, loginError: S.loginError, toast: S.toast,
+      onUser: e => this.setState({ user: e.target.value, loginError: false }),
+      onPass: e => this.setState({ pass: e.target.value, loginError: false }),
+      login: e => { e.preventDefault(); if (S.user === 'Tek@harma' && S.pass === 'H@rm@_tek_26') { sessionStorage.setItem('ht-admin', '1'); this.setState({ auth: true, pass: '' }); } else this.setState({ loginError: true }); }
+    };
+    const sec = S.section, sch = SCHEMA[sec];
+    const ready = !!S.draft;
+    const groups = !ready ? [] : sch.groups.map(g => ({ title: g.title, note: g.note || '', fields: g.fields.map(fd => this.fieldVM([sec], fd)), lists: g.lists.map(l => this.listVM(sec, l)) }));
+    // catalog
+    let cat = {};
+    if (sch.catalog) {
+      const list = this.catalog();
+      const q = S.catQ.trim().toLowerCase();
+      const idx = list.map((p, i) => i).filter(i => !q || (list[i][0] + ' ' + list[i][1] + ' ' + list[i][4]).toLowerCase().includes(q));
+      const PER = 15, pages = Math.max(1, Math.ceil(idx.length / PER)), page = Math.min(S.catPage, pages);
+      const slice = idx.slice((page - 1) * PER, page * PER);
+      const E = S.edit;
+      const ef = (key, label, type, hint) => {
+        const v = E ? E[key] : '';
+        return { label, hint: hint || '', isText: type === 'text', isArea: type === 'area', isMedia: type === 'image', rows: 3, dir: key.endsWith('_ar') ? 'rtl' : 'ltr', value: v, shown: String(v).startsWith('data:') ? '(uploaded file)' : v, preview: `url("${prodImg(v)}")`,
+          onChange: e => { if (e.target.value === '(uploaded file)') return; this.setState({ edit: { ...this.state.edit, [key]: e.target.value } }); },
+          onUpload: e => { const f = e.target.files && e.target.files[0]; e.target.value = ''; this.readFile(f, 'image').then(url => this.setState({ edit: { ...this.state.edit, [key]: url } })).catch(() => {}); } };
+      };
+      cat = {
+        catCount: list.length, catQ: S.catQ, catPage: page, catPages: pages,
+        catRange: idx.length ? `${(page - 1) * PER + 1}–${Math.min(page * PER, idx.length)} ${T('of')} ${idx.length}` : T('No matches'),
+        onCatQ: e => this.setState({ catQ: e.target.value, catPage: 1 }),
+        catPrev: () => this.setState({ catPage: Math.max(1, page - 1) }),
+        catNext: () => this.setState({ catPage: Math.min(pages, page + 1) }),
+        catRows: slice.map(i => ({ title: list[i][0], brand: list[i][4] || 'Unbranded', thumb: `url("${prodImg(list[i][2])}")`, edit: () => this.openEdit(i),
+          del: () => { if (!confirm(T('Delete') + ' "' + list[i][0] + '"?')) return; const l = clone(list); l.splice(i, 1); C.saveCatalog(l); this.flash(T('Product deleted')); this.forceUpdate(); } })),
+        catAdd: () => this.openEdit('new'),
+        catReset: () => { if (!confirm(T('Restore the original product catalogue? Your product edits will be lost.'))) return; C.resetCatalog(); this.setState({ editIdx: null, edit: null }); this.flash(T('Catalogue restored')); },
+        editing: S.edit != null,
+        editTitle: S.editIdx === 'new' ? T('New product') : T('Edit product'),
+        editFields: [ef('title', 'Product name', 'text'), ef('title_ar', 'Product name (Arabic, optional)', 'text'), ef('description', 'Description', 'area'), ef('description_ar', 'Description (Arabic, optional)', 'area'), ef('brand', 'Brand', 'text'), ef('image', 'Image', 'image', 'Use an uploaded image, a full URL, or the original image file name.'), ef('features', 'Features (one per line)', 'area')],
+        editCancel: () => this.setState({ editIdx: null, edit: null }),
+        editSave: () => {
+          const e = S.edit; if (!e.title.trim()) return this.flash(T('Product name is required'));
+          const item = [e.title.trim(), e.description.trim(), e.image.trim(), e.features.split('\n').map(s => s.trim()).filter(Boolean), e.brand.trim(), e.title_ar.trim(), e.description_ar.trim()];
+          const l = clone(list); if (S.editIdx === 'new') l.unshift(item); else l[S.editIdx] = item;
+          C.saveCatalog(l); this.setState({ editIdx: null, edit: null }); this.flash(S.editIdx === 'new' ? T('Product added') : T('Product saved'));
+        }
+      };
+    }
+    return {
+      ...lv,
+      showLogin: false, showApp: true, toast: S.toast, dirty: S.dirty,
+      isHelp: sec === 'help', barDisplay: sec === 'help' ? 'none' : 'flex', hasPage: !!sch.page,
+      helpItems: sec === 'help' ? HELP.map(h => ({ title: AR() ? h.ta : h.t, steps: AR() ? h.sa : h.s, hasImg: !!h.img, img: h.img ? `url("help/${h.img}")` : 'none', ratio: h.r || '909 / 540' })) : [],
+      navItems: ORDER.map(k => ({ label: T(SCHEMA[k].label), go: () => this.setState({ section: k, editIdx: null, edit: null }), bg: k === sec ? '#014995' : 'transparent', color: k === sec ? '#ffffff' : 'rgb(255 255 255 / 0.8)', dot: k === sec ? '#FD5E00' : 'rgb(255 255 255 / 0.25)' })),
+      sectionLabel: sec === 'help' ? T('Help & instructions') : T(sch.label), sectionPage: sch.page,
+      groups, isProducts: !!sch.catalog, ...cat,
+      save: () => { try { C.saveAll(S.draft); this.setState({ dirty: false }); this.flash(T('Changes saved')); } catch (e) { this.flash(T('Could not save — storage is full. Use smaller images or links.')); } },
+      resetSection: () => { if (!confirm(T('Restore the original content for') + ' ' + T(sch.label) + '? ' + T('(Not saved until you click Save changes.)'))) return; const d = clone(S.draft); d[sec] = C.defaults()[sec]; this.setState({ draft: d, dirty: true }); },
+      resetAll: () => { if (!confirm(T('Restore ALL website content and products to the original? This cannot be undone.'))) return; C.resetAll(); this.setState({ draft: clone(C.all()), dirty: false }); this.flash(T('Everything restored')); },
+      exportData: () => { const blob = new Blob([JSON.stringify({ content: S.draft, catalog: C.hasCatalogOverride() ? C.products() : null }, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'harmatek-content.json'; a.click(); },
+      importData: e => { const f = e.target.files && e.target.files[0]; e.target.value = ''; if (!f) return; f.text().then(txt => { const j = JSON.parse(txt); if (j.content) C.saveAll(j.content); if (j.catalog) C.saveCatalog(j.catalog); this.setState({ draft: clone(C.all()), dirty: false }); this.flash(T('Backup imported')); }).catch(() => this.flash(T('Invalid backup file'))); },
+      logout: () => { sessionStorage.removeItem('ht-admin'); this.setState({ auth: false, user: '', pass: '' }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

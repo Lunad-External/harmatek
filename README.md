@@ -1,73 +1,19 @@
-# Welcome to your Lovable project
+# HarmaTek website — GitHub Pages
 
-## Project info
+## Publish
+1. Create a GitHub repository (or use an existing one).
+2. Upload **everything inside this folder** to the repository root (keep the folder structure, including `.nojekyll`).
+3. In the repository go to **Settings → Pages**, set **Source: Deploy from a branch**, branch `main`, folder `/ (root)`, and save.
+4. After a minute the site is live at `https://<your-user>.github.io/<repo>/` — `index.html` opens the Home page.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## Pages
+- `Home.dc.html`, `Products.dc.html`, `Brochures.dc.html`, `About.dc.html`, `Contact.dc.html`
+- `Admin.dc.html` — admin panel (link in the footer)
+- `Header.dc.html` / `Footer.dc.html` are shared parts loaded by every page — keep them.
 
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Notes
+- The site needs an internet connection for fonts and the page runtime (loaded from unpkg / Google Fonts).
+- Product photos are in `src/assets/productImages/` and brochure PDFs in `public/`. Everything the site needs is in this folder.
+- Admin panel edits are stored in the browser that made them. They are not shared with other visitors on GitHub Pages (static hosting has no database).
+- The admin login is checked in the browser, so it is not secure on a public static host.
+- The contact form posts to `https://harmatek.sa/contact.php`; it only works if that endpoint accepts requests from your GitHub Pages domain.

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Industrial Engineering &amp; Machine Manufacturing Company | Integrated Industrial Solutions</title>
+<meta name="description" content="Specialized industrial engineering company offering integrated solutions in machine design, production lines manufacturing, and high-quality industrial spare parts and components.">
+<link rel="icon" href="public/favicon.ico">
+<script src="cms.js"></script>
+<script src="i18n.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap">
+<style>
+*,*::before,*::after{box-sizing:border-box;border:0 solid #dbe3ee}
+html{scroll-behavior:smooth;line-height:1.5}
+body{margin:0;background:#ffffff;color:#0f1f33;font-family:'Outfit',sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+h1,h2,h3,h4,h5,h6{font-family:'Space Grotesk',sans-serif;margin:0;font-size:inherit;font-weight:inherit}
+p,ul{margin:0;padding:0}ul{list-style:none}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}a:hover{color:#014995}
+button,input,textarea,select{font:inherit;color:inherit;margin:0}
+input::placeholder,textarea::placeholder{color:#55657a;opacity:1}
+input:focus,textarea:focus{outline:none;border-color:#014995 !important;box-shadow:0 0 0 2px #ffffff,0 0 0 4px #014995}
+@keyframes ht-bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,10px)}}
+@keyframes ht-pulse{50%{opacity:.5}}
+@keyframes ht-fadeup{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #ffffff;">
+  <dc-import name="Header" overlay="{{ true }}" hint-size="100%,120px"></dc-import>
+  <main>
+    <section id="home" style="position: relative; display: flex; align-items: center; overflow: hidden; padding-top: 136px; padding-bottom: 48px; min-height: 100vh; min-height: 100svh;">
+      <div style="position: absolute; inset: 0; background: #0b1524;">
+        <sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ heroSlides }}" as="s" hint-placeholder-count="0">
+          <div role="img" aria-label="HarmaTek industrial engineering solutions" style="position: absolute; inset: 0; width: 100%; height: 100%; transition: opacity 1s ease; opacity: {{ s.op }}; background-image: url('{{ s.src }}'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+        </sc-for></sc-if>
+        <div data-flip-x="" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgb(8 18 32 / 0.82), rgb(8 18 32 / 0.62) 55%, rgb(8 18 32 / 0.5));"></div>
+      </div>
+      <div style="position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
+        <div style="display: grid; grid-template-columns: {{ cols2 }}; gap: 32px; align-items: start;">
+          <div style="max-width: 768px; animation: ht-fadeup 0.8s ease-out both;">
+            <span style="display: inline-block; padding: 8px 16px; border-radius: 9999px; background: rgb(255 255 255 / 0.12); border: 1px solid rgb(255 255 255 / 0.45); color: #ffffff; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 16px;" data-cms="home.heroBadge">Hamratek Industrial Creative Solutions</span>
+            <h1 style="font-size: 18px; line-height: 26px; color: #ffffff; margin-bottom: 16px; max-width: 672px;" data-cms="home.heroP1">We are a specialized industrial engineering services company providing integrated solutions in the design and manufacturing of machines, production lines, and industrial , in addition to manufacturing spare parts and industrial components with high quality standards.</h1>
+            <p style="font-size: 18px; line-height: 26px; color: #ffffff; margin-bottom: 16px; max-width: 672px;" data-cms="home.heroP2">Our team combines engineering expertise with modern technologies to deliver efficient, accurate, and reliable solutions that meet our clients’ operational needs while ensuring quality, safety, and on-time delivery.</p>
+            <p data-ar-dup="" style="font-size: 18px; line-height: 26px; color: #ffffff; margin-bottom: 16px; max-width: 672px;" data-cms="home.heroP3">نحن شركة متخصصة في الخدمات الهندسية الصناعية، نقدم حلولًا متكاملة تشمل تصميم وتنفيذ الماكينات وخطوط الإنتاج بالإضافة إلى قطع الغيار والمكونات الصناعية بأعلى معايير الجوده</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 0;">
+              <a href="Products.dc.html" style="display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 32px; border-radius: 12px; font-size: 18px; line-height: 28px; font-weight: 600; background: #014995; color: #ffffff; box-shadow: 0 4px 30px rgb(1 73 149 / 0.15); transition: all 0.3s;" style-hover="background: rgb(1 73 149 / 0.8); color: #ffffff; box-shadow: 0 10px 15px -3px rgb(1 73 149 / 0.25);" data-cms="home.heroButton">Explore Solutions</a>
+            </div>
+            </div>
+          <div style="display: flex; flex-direction: column; gap: 48px; margin-top: {{ rightMt }};">
+            <sc-if value="{{ showBrochures }}" hint-placeholder-val="{{ false }}">
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; justify-items: center; animation: ht-fadeup 0.8s 0.6s ease-out both;">
+              <sc-for list="{{ brochures }}" as="b" hint-placeholder-count="0">
+                <div style="width: 144px; border-radius: 12px; overflow: hidden; position: relative; border: 2px solid #4b5563; padding-bottom: 8px; background: rgb(0 0 0 / 0.4); backdrop-filter: blur(4px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); transition: border-color 0.2s;" style-hover="border-color: #014995;">
+                  <div role="img" aria-label="{{ b.title }}" style="width: 144px; height: 144px; border-radius: 12px; background-image: url('{{ b.image }}'); background-size: cover; background-position: center; background-repeat: no-repeat;"></div>
+                  <p style="color: #ffffff; margin-top: 2px; text-align: center; font-size: 12px; line-height: 16px; font-weight: 600; padding: 2px;" data-ar="{{ b.title_ar }}">{{ b.title }}</p>
+                  <div style="display: flex; justify-content: center; align-items: center; padding-bottom: 2px;">
+                    <a href="{{ b.download }}" download="" target="_blank" style="margin-top: 4px; width: 75%; color: #ffffff; background: #014995; text-align: center; padding: 4px; border-radius: 12px; display: inline-flex; justify-content: center; font-size: 12px; line-height: 16px;" style-hover="color: #ffffff;">Download</a>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+<sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ heroStats }}" as="it" hint-placeholder-count="0">
+<div style="text-align: center;">
+                {{ it.icon }}
+                <p style="font-size: 30px; line-height: 36px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #ffffff;"><span data-ar="{{ it.value_ar }}" style="direction: ltr; unicode-bidi: isolate; display: inline-block;">{{ it.value }}</span></p>
+                <p style="font-size: 14px; line-height: 20px; color: #ffffff;" data-ar="{{ it.label_ar }}">{{ it.label }}</p>
+              </div>
+</sc-for></sc-if>
+</div>
+          </div>
+        </div>
+      </div>
+      </section>
+
+    <section id="products" style="padding: 96px 0; position: relative; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, #ffffff, #f4f7fb);"></div>
+      <div style="position: absolute; inset: 0; opacity: 0.3; background-image: radial-gradient(circle at 1px 1px, rgb(1 73 149 / 0.15) 1px, transparent 0); background-size: 30px 30px;"></div>
+      <div style="position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
+        <div style="text-align: center; max-width: 768px; margin: 0 auto 64px;">
+          <span style="display: inline-block; padding: 8px 16px; border-radius: 9999px; background: rgb(1 73 149 / 0.1); border: 1px solid rgb(1 73 149 / 0.3); color: #014995; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 16px;" data-cms="home.productsBadge">Our Solutions</span>
+          <h2 style="font-size: {{ h2xl }}; line-height: 1; font-weight: 700; margin-bottom: 24px;"><span data-cms="home.productsTitle">Browse</span> <span data-cms="home.productsHighlight" style="color: #014995;">Our Products</span></h2>
+          <p style="color: #55657a; font-size: 18px; line-height: 28px;" data-cms="home.productsIntro">Discover our comprehensive suite of safety and productivity solutions designed for the modern warehouse.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: {{ cols3 }}; gap: 32px;">
+          <sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ products }}" as="p" hint-placeholder-count="0">
+            <article onMouseEnter="{{ p.enter }}" onMouseLeave="{{ p.leave }}" style="position: relative; background: #f4f7fb; border-radius: 16px; overflow: hidden; border: 1px solid {{ p.border }}; box-shadow: {{ p.shadow }}; transition: all 0.5s;">
+              <div style="position: relative; height: 256px; overflow: hidden; background: #eaeff6;">
+                <div role="img" aria-label="{{ p.title }}" style="width: 100%; height: 100%; transition: transform 0.6s ease-out; transform: {{ p.scale }}; background-image: url('{{ p.image }}'); background-size: contain; background-position: center; background-repeat: no-repeat;"></div>
+                <div style="position: absolute; inset: 0; opacity: 0.6; background: linear-gradient(to top, #ffffff, transparent, transparent);"></div>
+                <div style="position: absolute; inset: 0; background: rgb(1 73 149 / 0.05); transition: opacity 0.3s; opacity: {{ p.hov }};"></div>
+                <div style="position: absolute; inset: 0; pointer-events: none; transition: opacity 0.5s; opacity: {{ p.hov }}; background: linear-gradient(to top, rgb(1 73 149 / 0.2), transparent);"></div>
+              </div>
+              <div style="padding: 24px;">
+                <h3 style="font-size: 20px; line-height: 28px; font-weight: 700; margin-bottom: 12px; transition: color 0.2s; color: {{ p.titleColor }}; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;" data-ar="{{ p.title_ar }}">{{ p.title }}</h3>
+                <p style="color: #55657a; margin-bottom: 16px; font-size: 14px; line-height: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;" data-ar="{{ p.description_ar }}">{{ p.description }}</p>
+                <ul style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;">
+                  <sc-for list="{{ p.features }}" as="f" hint-placeholder-count="4">
+                    <li style="display: flex; align-items: center; gap: 8px; font-size: 14px; line-height: 20px; color: rgb(15 31 51 / 0.8);">
+                      <span style="width: 6px; height: 6px; border-radius: 9999px; background: #014995; flex-shrink: 0;"></span>
+                      <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ f }}</span>
+                    </li>
+                  </sc-for>
+                </ul>
+              </div>
+              <div style="position: absolute; top: 0; right: 0; width: 80px; height: 80px; overflow: hidden;">
+                <div style="position: absolute; inset: 0; background: linear-gradient(to bottom left, rgb(1 73 149 / 0.2), transparent); transition: opacity 0.5s; opacity: {{ p.hov }};"></div>
+              </div>
+            </article>
+          </sc-for></sc-if>
+        </div>
+        <div style="display: flex; justify-content: center; margin-top: 48px;">
+          <a href="Products.dc.html" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; background: #014995; color: #ffffff; border-radius: 12px; font-weight: 500; transition: background 0.2s;" style-hover="background: rgb(1 73 149 / 0.9); color: #ffffff;" data-cms="home.productsButton">View all products
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FD5E00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding: 96px 0; position: relative; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, #ffffff, #f4f7fb);"></div>
+      <div style="position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
+        <div style="text-align: center; max-width: 768px; margin: 0 auto 64px;">
+          <h2 style="font-size: {{ h2md }}; line-height: {{ h2mdLh }}; font-weight: 700; margin-bottom: 16px;"><span data-cms="home.whyTitle">Why Choose</span> <span data-cms="home.whyHighlight" style="color: #014995;">HarmaTek</span>?</h2>
+          <p style="color: #55657a; font-size: 18px; line-height: 28px;" data-cms="home.whyIntro">Industry-leading technology backed by in-house R&amp;D expertise.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: {{ cols4 }}; gap: 24px;">
+<sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ whyItems }}" as="it" hint-placeholder-count="0">
+<div style="text-align: center; padding: 32px; border-radius: 16px; background: rgb(244 247 251 / 0.5); border: 1px solid #dbe3ee; transition: all 0.3s;" style-hover="border-color: rgb(1 73 149 / 0.5); box-shadow: 0 4px 30px rgb(1 73 149 / 0.15);">
+            <div style="width: 64px; height: 64px; margin: 0 auto 24px; border-radius: 12px; background: rgb(1 73 149 / 0.1); display: flex; align-items: center; justify-content: center; transition: transform 0.2s;" style-hover="transform: scale(1.1) rotate(5deg);">
+              {{ it.icon }}
+            </div>
+            <h3 style="font-size: 20px; line-height: 28px; font-weight: 600; margin-bottom: 12px;" data-ar="{{ it.title_ar }}">{{ it.title }}</h3>
+            <p style="color: #55657a; font-size: 14px; line-height: 20px;" data-ar="{{ it.description_ar }}">{{ it.description }}</p>
+          </div>
+</sc-for></sc-if>
+</div>
+      </div>
+    </section>
+
+    <section id="about" style="padding: 96px 0; position: relative; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: #f4f7fb;"></div>
+      <div style="position: absolute; inset: 0; opacity: 0.2; background-image: linear-gradient(90deg, rgb(1 73 149 / 0.03) 1px, transparent 1px), linear-gradient(rgb(1 73 149 / 0.03) 1px, transparent 1px); background-size: 40px 40px;"></div>
+      <div style="position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
+        <div style="display: grid; grid-template-columns: {{ cols2 }}; gap: 64px; align-items: center;">
+          <div>
+            <span style="display: inline-block; padding: 8px 16px; border-radius: 9999px; background: rgb(1 73 149 / 0.1); border: 1px solid rgb(1 73 149 / 0.3); color: #014995; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 16px;" data-cms="home.aboutBadge">About HarmaTek</span>
+            <h2 style="font-size: {{ h2xl }}; line-height: 1; font-weight: 700; margin-bottom: 24px;"><span data-cms="home.aboutTitle">Pioneering</span> <span data-cms="home.aboutHighlight" style="color: #014995;">Workplace Safety</span></h2>
+            <p style="color: #55657a; font-size: 18px; line-height: 28px; margin-bottom: 24px;" data-cms="home.aboutP1">Established in 2022, HarmaTek is an Australian innovator committed to elevating safety and productivity standards within the material handling industry.</p>
+            <p style="color: #55657a; margin-bottom: 32px;" data-cms="home.aboutP2">Our vision advocates for a future where enhanced safety and productivity features are not just optional or luxury add-ons, but fundamental components of every forklift—ensuring a safer, more efficient, and technologically advanced industry standard.</p>
+            <div style="background: rgb(234 239 246 / 0.5); border-radius: 12px; padding: 24px; border: 1px solid #dbe3ee;">
+              <h3 style="font-weight: 600; margin-bottom: 8px;" data-cms="home.missionTitle">Our Mission</h3>
+              <p style="color: #55657a; font-size: 14px; line-height: 20px;" data-cms="home.missionText">Innovation and excellence in creating systems that enhance both safety and efficiency, while ensuring accessibility and affordability for businesses of all sizes.</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px;">
+<sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ aboutStats }}" as="it" hint-placeholder-count="0">
+<div style="background: #ffffff; border-radius: 12px; padding: 24px; border: 1px solid #dbe3ee; box-shadow: 0 8px 32px rgb(1 40 82 / 0.08); transition: all 0.3s;" style-hover="border-color: rgb(1 73 149 / 0.5); box-shadow: 0 20px 60px rgb(1 40 82 / 0.16);">
+              {{ it.icon }}
+              <p style="font-size: 30px; line-height: 36px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; margin-bottom: 4px;"><span data-ar="{{ it.value_ar }}" style="direction: ltr; unicode-bidi: isolate; display: inline-block;">{{ it.value }}</span></p>
+              <p style="font-size: 14px; line-height: 20px; color: #55657a;" data-ar="{{ it.label_ar }}">{{ it.label }}</p>
+            </div>
+</sc-for></sc-if>
+</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="padding: 96px 0; position: relative; overflow: hidden;">
+      <div style="position: absolute; inset: 0; background: #f4f7fb;"></div>
+      <div style="position: absolute; inset: 0; opacity: 0.2; background-image: radial-gradient(circle at 1px 1px, rgb(1 73 149 / 0.15) 1px, transparent 0); background-size: 30px 30px;"></div>
+      <div style="position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
+        <div style="text-align: center; max-width: 768px; margin: 0 auto 64px;">
+          <span style="display: inline-block; padding: 8px 16px; border-radius: 9999px; background: rgb(1 73 149 / 0.1); border: 1px solid rgb(1 73 149 / 0.3); color: #014995; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 16px;" data-cms="home.contactBadge">Get In Touch</span>
+          <h2 style="font-size: {{ h2xl }}; line-height: 1; font-weight: 700; margin-bottom: 16px;"><span data-cms="home.contactTitle">Ready to</span> <span data-cms="home.contactHighlight" style="color: #014995;">Enhance Safety</span>?</h2>
+          <p style="color: #55657a; font-size: 18px; line-height: 28px;" data-cms="home.contactIntro">Contact us today to discuss how our solutions can transform your operations.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: {{ cols2 }}; gap: 48px; max-width: 1024px; margin: 0 auto;">
+          <div style="display: flex; flex-direction: column; gap: 32px;">
+            <div>
+              <h3 style="font-size: 24px; line-height: 32px; font-weight: 700; margin-bottom: 24px;" data-cms="home.contactInfoTitle">Contact Information</h3>
+              <p style="color: #55657a; margin-bottom: 32px;" data-cms="home.contactInfoText">Our team is ready to help you find the perfect safety solution for your material handling operations.</p>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+<sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ contactItems }}" as="it" hint-placeholder-count="0">
+<a href="{{ it.href }}" style="display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 12px; background: #ffffff; border: 1px solid #dbe3ee; transition: all 0.3s;" style-hover="border-color: rgb(1 73 149 / 0.5); transform: translateX(5px); color: inherit;">
+                <div style="width: 48px; height: 48px; border-radius: 12px; background: rgb(1 73 149 / 0.1); display: flex; align-items: center; justify-content: center;">
+                  {{ it.icon }}
+                </div>
+                <div>
+                  <p style="font-size: 14px; line-height: 20px; color: #55657a;" data-ar="{{ it.label_ar }}">{{ it.label }}</p>
+                  <p style="color: #0f1f33; font-weight: 500;"><span data-ar="{{ it.value_ar }}" style="direction: ltr; unicode-bidi: isolate; display: inline-block;">{{ it.value }}</span></p>
+                </div>
+              </a>
+</sc-for></sc-if>
+</div>
+          </div>
+          <form onSubmit="{{ submit }}" style="background: #ffffff; border-radius: 16px; padding: 32px; border: 1px solid #dbe3ee; box-shadow: 0 8px 32px rgb(1 40 82 / 0.08);">
+            <h3 style="font-size: 20px; line-height: 28px; font-weight: 700; margin-bottom: 24px;">Send us a Message</h3>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
+                <div>
+                  <label for="name" style="display: block; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 8px;">Name</label>
+                  <input id="name" name="name" placeholder="Your name" required="" style="display: flex; height: 40px; width: 100%; border-radius: 10px; border: 1px solid #dbe3ee; background: #eaeff6; padding: 8px 12px; font-size: 14px; color: #0f1f33;">
+                </div>
+                <div>
+                  <label for="email" style="display: block; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 8px;">Email</label>
+                  <input id="email" name="email" type="email" placeholder="your@email.com" required="" style="display: flex; height: 40px; width: 100%; border-radius: 10px; border: 1px solid #dbe3ee; background: #eaeff6; padding: 8px 12px; font-size: 14px; color: #0f1f33;">
+                </div>
+              </div>
+              <div>
+                <label for="company" style="display: block; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 8px;">Company</label>
+                <input id="company" name="company" placeholder="Your company name" style="display: flex; height: 40px; width: 100%; border-radius: 10px; border: 1px solid #dbe3ee; background: #eaeff6; padding: 8px 12px; font-size: 14px; color: #0f1f33;">
+              </div>
+              <div>
+                <label for="message" style="display: block; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 8px;">Message</label>
+                <textarea id="message" name="message" placeholder="Tell us about your safety requirements..." rows="4" required="" style="display: flex; min-height: 80px; width: 100%; border-radius: 10px; border: 1px solid #dbe3ee; background: #eaeff6; padding: 8px 12px; font-size: 14px; color: #0f1f33; resize: none;"></textarea>
+              </div>
+              <button type="submit" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 48px; padding: 0 32px; border-radius: 12px; font-size: 16px; font-weight: 600; background: #014995; color: #ffffff; box-shadow: 0 4px 30px rgb(1 73 149 / 0.15); cursor: pointer; transition: all 0.3s;" style-hover="background: rgb(1 73 149 / 0.8); box-shadow: 0 10px 15px -3px rgb(1 73 149 / 0.25);">{{ sendLabel }}
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FD5E00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+  <dc-import name="Footer" hint-size="100%,360px"></dc-import>
+  <sc-if value="{{ toast }}" hint-placeholder-val="{{ false }}">
+    <div style="position: fixed; top: 16px; right: 16px; z-index: 100; padding: 16px; border-radius: 8px; font-size: 14px; font-weight: 500; color: #fff; background: {{ toast.bg }}; box-shadow: 0 4px 12px rgb(0 0 0 / 0.1); min-width: 300px;">{{ toast.text }}</div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const L2 = (p) => (window.HT_CMS && window.HT_CMS.get(p)) || [];
+class Component extends DCLogic {
+  state = { w: window.innerWidth, slide: 0, hp: -1, sending: false, toast: null };
+  componentDidMount() {
+    if (!window.HT_CMS) this.cmsPoll = setInterval(() => { if (window.HT_CMS) { clearInterval(this.cmsPoll); this.forceUpdate(); } }, 30);
+    this.onCms = () => this.forceUpdate(); window.addEventListener('ht-cms', this.onCms);
+    this.onR = () => this.setState({ w: window.innerWidth });
+    window.addEventListener('resize', this.onR);
+    this.t = setInterval(() => this.setState(s => ({ slide: (s.slide + 1) % Math.max(1, L2('home.heroSlides').length) })), 5000);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this.onR); clearInterval(this.t); clearTimeout(this.tt); }
+  showToast(text, bg) { this.setState({ toast: { text, bg } }); clearTimeout(this.tt); this.tt = setTimeout(() => this.setState({ toast: null }), 4000); }
+  async submit(e) {
+    e.preventDefault();
+    if (this.state.sending) return;
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+    this.setState({ sending: true });
+    try {
+      const res = await fetch('https://harmatek.sa/contact.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: fd.get('name'), email: fd.get('email'), company: fd.get('company'), message: fd.get('message') }) });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Failed to send');
+      this.showToast('Message sent successfully!', '#22c55d');
+      form.reset();
+    } catch (err) {
+      this.showToast('Failed to send message', '#ef4444');
+    } finally { this.setState({ sending: false }); }
+  }
+  renderVals() {
+    const C = window.HT_CMS, H = React.createElement;
+    const ICONS = {"heroStats":["<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#ffffff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"margin: 0 auto 8px;\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"></path></svg>","<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#ffffff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"margin: 0 auto 8px;\"><path d=\"M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z\"></path></svg>","<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#ffffff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"margin: 0 auto 8px;\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><circle cx=\"12\" cy=\"12\" r=\"6\"></circle><circle cx=\"12\" cy=\"12\" r=\"2\"></circle></svg>"],"whyItems":["<svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FD5E00\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\"></path><path d=\"m9 12 2 2 4-4\"></path></svg>","<svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FD5E00\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"22 7 13.5 15.5 8.5 10.5 2 17\"></polyline><polyline points=\"16 7 22 7 22 13\"></polyline></svg>","<svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FD5E00\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"12 6 12 12 16 14\"></polyline></svg>","<svg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FD5E00\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z\"></path><circle cx=\"12\" cy=\"12\" r=\"3\"></circle></svg>"],"aboutStats":["<svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FD5E00\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"margin-bottom: 16px;\"><path d=\"m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526\"></path><circle cx=\"12\" cy=\"8\" r=\"6\"></circle></svg>","<svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FD5E00\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"margin-bottom: 16px;\"><path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"></path><circle cx=\"9\" cy=\"7\" r=\"4\"></circle><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"></path><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"></path></svg>","<svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FD5E00\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"margin-bottom: 16px;\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><path d=\"M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20\"></path><path d=\"M2 12h20\"></path></svg>","<svg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FD5E00\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" style=\"margin-bottom: 16px;\"><path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z\"></path></svg>"],"contactItems":["<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FD5E00\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"20\" height=\"16\" x=\"2\" y=\"4\" rx=\"2\"></rect><path d=\"m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7\"></path></svg>","<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FD5E00\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z\"></path></svg>","<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FD5E00\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z\"></path><circle cx=\"12\" cy=\"10\" r=\"3\"></circle></svg>"]};
+    const ic = (k, i) => { const a = ICONS[k]; return H('span', { style: { display: 'contents' }, dangerouslySetInnerHTML: { __html: a[i % a.length] } }); };
+    const L = (p) => (C && C.get(p)) || [];
+    const { w, slide, hp, sending, toast } = this.state;
+    const md = w >= 768, lg = w >= 1024, xl = w >= 1280;
+    const imgs = ['homepagehero1.png', 'homepagehero2.jpg', 'homepagehero3.jpg', 'homepagehero4.jpg'];
+    const products = L('home.productCards').map(p => ({ ...p, features: String(p.features || '').split('\n').map(s => s.trim()).filter(Boolean) })).map((p, i) => {
+      const on = hp === i;
+      return { ...p, hov: on ? 1 : 0, scale: on ? 'scale(1.08)' : 'scale(1)', titleColor: on ? '#014995' : '#0f1f33', border: on ? 'rgb(1 73 149 / 0.5)' : '#dbe3ee', shadow: on ? '0 20px 60px rgb(1 40 82 / 0.16)' : '0 8px 32px rgb(1 40 82 / 0.08)', enter: () => this.setState({ hp: i }), leave: () => this.setState({ hp: -1 }) };
+    });
+    const base = 'public/';
+    return {
+      ready_: !!C,
+      rightMt: lg ? '54px' : '0',
+      pad: lg ? '32px' : '16px',
+      heroMinH: md ? '100vh' : '70vh',
+      cols2: lg ? 'repeat(2, minmax(0, 1fr))' : 'minmax(0, 1fr)',
+      cols3: lg ? 'repeat(3, minmax(0, 1fr))' : md ? 'repeat(2, minmax(0, 1fr))' : 'minmax(0, 1fr)',
+      cols4: lg ? 'repeat(4, minmax(0, 1fr))' : md ? 'repeat(2, minmax(0, 1fr))' : 'minmax(0, 1fr)',
+      h2xl: lg ? '48px' : md ? '36px' : '30px',
+      h2md: md ? '36px' : '30px',
+      h2mdLh: md ? '40px' : '36px',
+      xl,
+      showBrochures: true,
+      heroSlides: L('home.heroSlides').map((s, i) => ({ src: s.image, op: i === slide ? 1 : 0 })),
+      heroStats: L('home.heroStats').map((it, i) => ({ ...it, icon: ic('heroStats', i) })),
+      whyItems: L('home.whyItems').map((it, i) => ({ ...it, icon: ic('whyItems', i) })),
+      aboutStats: L('home.aboutStats').map((it, i) => ({ ...it, icon: ic('aboutStats', i) })),
+      contactItems: L('home.contactItems').map((it, i) => ({ ...it, icon: ic('contactItems', i) })),
+      brochures: L('brochures.items').map(b => ({ title: b.title, title_ar: b.title_ar, image: b.image, download: b.pdf })),
+
+      products,
+      submit: (e) => this.submit(e),
+      sendLabel: sending ? 'Sending...' : 'Send Message',
+      toast,
+    };
+  }
+}
+</script>
+</body>
+</html>
