@@ -20,19 +20,19 @@ const brochureData = [
     id: 1,
     title: "Electronics Equipment",
     image: electronicsEquipment,
-    download: "/electric-equipment.pdf"
+    download: `${import.meta.env.BASE_URL}electric-equipment.pdf`
   },
   {
     id: 2,
     title: "General Profile",
     image: generalProfile,
-    download: "/general-brochure.pdf"
+    download: `${import.meta.env.BASE_URL}general-brochure.pdf`
   },
   {
     id: 3,
     title: "Lab Repair Services",
     image: repairLab,
-    download: "/repair-lab.pdf"
+    download: `${import.meta.env.BASE_URL}repair-lab.pdf`
   }
 ];
 
