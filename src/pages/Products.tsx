@@ -260,7 +260,7 @@ const Products = () => {
               <p className="text-muted-foreground mb-6">
                 Looking for a custom solution? We specialize in tailoring our technology to your specific needs.
               </p>
-              <a href="/contact" className="inline-flex items-center justify-center px-8 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary/90 transition-colors shadow-lg">
+              <a href={`${import.meta.env.BASE_URL}contact`} className="inline-flex items-center justify-center px-8 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary/90 transition-colors shadow-lg">
                 Contact Sales Team
               </a>
             </div>
