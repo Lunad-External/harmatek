@@ -41,7 +41,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <motion.a
-            href="/"
+            href={`${import.meta.env.BASE_URL}`}
             className="flex items-center gap-3"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -61,7 +61,7 @@ const Header = () => {
             {navItems.map((item) => (
               <motion.a
                 key={item.label}
-                href={item.href}
+                href={import.meta.env.BASE_URL + item.href.slice(1)}
                 className="text-foreground/80 hover:text-primary transition-colors font-medium relative group"
                 whileHover={{ y: -2 }}
                
@@ -108,7 +108,7 @@ const Header = () => {
               {navItems.map((item) => (
                 <a
                   key={item.label}
-                  href={item.href}
+                  href={import.meta.env.BASE_URL + item.href.slice(1)}
                   className="text-foreground/80 hover:text-primary transition-colors font-medium py-2"
                   onClick={() => setIsMobileMenuOpen(false)}
                  
