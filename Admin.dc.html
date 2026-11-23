@@ -271,7 +271,7 @@ textarea[dir=rtl],input[dir=rtl]{font-family:'Tajawal','Outfit',sans-serif}
 const SCHEMA = {
   home: { label: 'Home', page: 'Home.dc.html', groups: [
     { title: 'Hero section', note: 'The brochure cards in the hero are managed in the Brochure section.', fields: [['heroBadge', 'Badge text', 'text', 1], ['heroP1', 'Main paragraph', 'area', 1], ['heroP2', 'Second paragraph', 'area', 1], ['heroButton', 'Button label', 'text', 1]],
-      lists: [{ key: 'heroSlides', label: 'Background slideshow images', item: [['image', 'Image', 'image', 0]] }] },
+      lists: [{ key: 'heroSlides', label: 'Background slideshow images', item: [['image', 'Image', 'image', 0]] }, { key: 'heroStats', label: 'Stats', item: [['value', 'Value', 'text', 0], ['label', 'Label', 'text', 1]] }] },
     { title: 'Products preview', fields: [['productsBadge', 'Badge', 'text', 1], ['productsTitle', 'Heading (first part)', 'text', 1], ['productsHighlight', 'Heading (highlighted part)', 'text', 1], ['productsIntro', 'Intro text', 'area', 1], ['productsButton', 'Button label', 'text', 1]],
       lists: [{ key: 'productCards', label: 'Product cards', item: [['title', 'Title', 'text', 1], ['description', 'Description', 'area', 1], ['image', 'Image', 'image', 0], ['features', 'Features (one per line)', 'area', 0]] }] },
     { title: 'Why choose us', fields: [['whyTitle', 'Heading (first part)', 'text', 1], ['whyHighlight', 'Heading (highlighted part)', 'text', 1], ['whyIntro', 'Intro text', 'area', 1]],

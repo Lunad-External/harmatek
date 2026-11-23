@@ -44,15 +44,24 @@ input:focus,textarea:focus{outline:none;border-color:#014995 !important;box-shad
       </div>
       <div style="position: relative; z-index: 10; width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 {{ pad }};">
         <div style="display: grid; grid-template-columns: {{ cols2 }}; gap: 32px; align-items: start;">
-          <div style="max-width: 768px; animation: ht-fadeup 0.8s ease-out both;">
-            <span style="display: inline-block; padding: 8px 16px; border-radius: 9999px; background: rgb(255 255 255 / 0.12); border: 1px solid rgb(255 255 255 / 0.45); color: #ffffff; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 16px;" data-cms="home.heroBadge">Hamratek Industrial Creative Solutions</span>
+          <div style="max-width: 768px; align-self: stretch; display: flex; flex-direction: column; animation: ht-fadeup 0.8s ease-out both;">
+            <span style="display: inline-block; align-self: flex-start; padding: 8px 16px; border-radius: 9999px; background: rgb(255 255 255 / 0.12); border: 1px solid rgb(255 255 255 / 0.45); color: #ffffff; font-size: 14px; line-height: 20px; font-weight: 500; margin-bottom: 16px;" data-cms="home.heroBadge">Hamratek Industrial Creative Solutions</span>
             <h1 style="font-size: 18px; line-height: 26px; color: #ffffff; margin-bottom: 16px; max-width: 672px;" data-cms="home.heroP1">We are a specialized industrial engineering services company providing integrated solutions in the design and manufacturing of machines, production lines, and industrial , in addition to manufacturing spare parts and industrial components with high quality standards.</h1>
             <p style="font-size: 18px; line-height: 26px; color: #ffffff; margin-bottom: 16px; max-width: 672px;" data-cms="home.heroP2">Our team combines engineering expertise with modern technologies to deliver efficient, accurate, and reliable solutions that meet our clients’ operational needs while ensuring quality, safety, and on-time delivery.</p>
-            <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 0;">
+            <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; max-width: 520px; margin: 8px 0 32px;">
+<sc-if value="{{ ready_ }}" hint-placeholder-val="{{ false }}"><sc-for list="{{ heroStats }}" as="it" hint-placeholder-count="0">
+<div style="text-align: center;">
+                {{ it.icon }}
+                <p style="font-size: 30px; line-height: 36px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; color: #ffffff;"><span data-ar="{{ it.value_ar }}" style="direction: ltr; unicode-bidi: isolate; display: inline-block;">{{ it.value }}</span></p>
+                <p style="font-size: 14px; line-height: 20px; color: #ffffff;" data-ar="{{ it.label_ar }}">{{ it.label }}</p>
+              </div>
+</sc-for></sc-if>
+</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 16px; margin-top: {{ btnMt }}; margin-bottom: {{ btnMb }};">
               <a href="Products.dc.html" style="display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 32px; border-radius: 12px; font-size: 18px; line-height: 28px; font-weight: 600; background: #014995; color: #ffffff; box-shadow: 0 4px 30px rgb(1 73 149 / 0.15); transition: all 0.3s;" style-hover="background: rgb(1 73 149 / 0.8); color: #ffffff; box-shadow: 0 10px 15px -3px rgb(1 73 149 / 0.25);" data-cms="home.heroButton">Explore Solutions</a>
             </div>
             </div>
-          <div style="display: flex; flex-direction: column; gap: 48px; margin-top: {{ rightMt }};">
+          <div style="display: flex; flex-direction: column; gap: 48px; margin-top: {{ rightMt }}; align-self: stretch; justify-content: flex-end;">
             <sc-if value="{{ showBrochures }}" hint-placeholder-val="{{ false }}">
             <div style="display: grid; grid-template-columns: repeat(2, max-content); gap: 24px; justify-content: center; animation: ht-fadeup 0.8s 0.6s ease-out both;">
               <sc-for list="{{ brochures }}" as="b" hint-placeholder-count="0">
@@ -285,6 +294,9 @@ class Component extends DCLogic {
       xl,
       showBrochures: true,
       heroSlides: L('home.heroSlides').map((s, i) => ({ src: s.image, op: i === slide ? 1 : 0 })),
+      heroStats: L('home.heroStats').map((it, i) => ({ ...it, icon: ic('heroStats', i) })),
+      btnMt: lg ? 'auto' : '0',
+      btnMb: lg ? '80px' : '0',
       whyItems: L('home.whyItems').map((it, i) => ({ ...it, icon: ic('whyItems', i) })),
       aboutStats: L('home.aboutStats').map((it, i) => ({ ...it, icon: ic('aboutStats', i) })),
       contactItems: L('home.contactItems').map((it, i) => ({ ...it, icon: ic('contactItems', i) })),
