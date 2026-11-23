@@ -82,7 +82,7 @@
       image: IMG + 'contact-page.jpg',
       cardTitle: 'Harma Tek',
       tagline: 'Specialized in maintaining machine production lines and installing electronic cards',
-      phones: [{ number: '+966 55 947 1701' }, { number: '+966 54 802 2461' }, { number: '+966 57 046 4872' }],
+      phones: [{ number: '+966 55 947 1701' }, { number: '+966 57 308 2441' }, { number: '+966 53 286 8525' }],
       email: 'sm@harmatek.sa',
       location: 'Riyadh, KSA',
       locationsTitle: 'Our',
