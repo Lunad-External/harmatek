@@ -296,7 +296,7 @@ class Component extends DCLogic {
       heroSlides: L('home.heroSlides').map((s, i) => ({ src: s.image, op: i === slide ? 1 : 0 })),
       heroStats: L('home.heroStats').map((it, i) => ({ ...it, icon: ic('heroStats', i) })),
       btnMt: lg ? 'auto' : '0',
-      btnMb: lg ? '80px' : '0',
+      btnMb: lg ? '12px' : '0',
       whyItems: L('home.whyItems').map((it, i) => ({ ...it, icon: ic('whyItems', i) })),
       aboutStats: L('home.aboutStats').map((it, i) => ({ ...it, icon: ic('aboutStats', i) })),
       contactItems: L('home.contactItems').map((it, i) => ({ ...it, icon: ic('contactItems', i) })),
