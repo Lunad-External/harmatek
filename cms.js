@@ -60,10 +60,10 @@
       titleA: 'Download',
       titleB: 'our brochures',
       items: [
-        { title: 'Electronics Equipment', image: IMG + 'electric-equipment.jpg', pdf: PDF + 'electric-equipment.pdf' },
+        { title: 'Product Brochure', image: IMG + 'product-brochure.jpg', pdf: PDF + 'product-brochure.pdf' },
         { title: 'General Profile', image: IMG + 'general-brochure.jpg', pdf: PDF + 'general-brochure.pdf' },
         { title: 'Lab Repair Services', image: IMG + 'repair-lab.jpg', pdf: PDF + 'repair-lab.pdf' },
-        { title: 'Product Brochure', image: IMG + 'product-brochure.jpg', pdf: PDF + 'product-brochure.pdf' }
+        { title: 'Electronics Equipment', image: IMG + 'electric-equipment.jpg', pdf: PDF + 'electric-equipment.pdf' }
       ]
     },
     about: {
