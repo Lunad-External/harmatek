@@ -62,7 +62,8 @@
       items: [
         { title: 'Electronics Equipment', image: IMG + 'electric-equipment.jpg', pdf: PDF + 'electric-equipment.pdf' },
         { title: 'General Profile', image: IMG + 'general-brochure.jpg', pdf: PDF + 'general-brochure.pdf' },
-        { title: 'Lab Repair Services', image: IMG + 'repair-lab.jpg', pdf: PDF + 'repair-lab.pdf' }
+        { title: 'Lab Repair Services', image: IMG + 'repair-lab.jpg', pdf: PDF + 'repair-lab.pdf' },
+        { title: 'Product Brochure', image: IMG + 'product-brochure.jpg', pdf: PDF + 'product-brochure.pdf' }
       ]
     },
     about: {

@@ -120,6 +120,7 @@
     "Electronics Equipment": "المعدات الإلكترونية",
     "General Profile": "الملف التعريفي العام",
     "Lab Repair Services": "خدمات إصلاح المختبر",
+    "Product Brochure": "كتيب المنتجات",
     "Our": "تشكيلة",
     "We are a leading company specialized in supplying all products related to electrical production lines and control panels, including PLC and VFD units. We provide comprehensive solutions that meet industry needs with the highest standards of quality and reliability. Our mission is to support our partners by delivering the latest technologies and exceptional services to ensure the continuity and efficiency of production operations": "نحن شركة رائدة ومتخصصة في توريد جميع المنتجات المتعلقة بخطوط الإنتاج الكهربائية ولوحات التحكم، بما في ذلك وحدات PLC وVFD، مع تقديم حلول متكاملة تلبي احتياجات الصناعة بأعلى معايير الجودة والموثوقية. نسعى دائمًا لدعم شركائنا من خلال توفير أحدث التقنيات والخدمات المتميزة لضمان استمرارية وكفاءة عمليات الإنتاج.",
     "Showing": "عرض",
