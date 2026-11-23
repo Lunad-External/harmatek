@@ -44,7 +44,7 @@
             </sc-for>
           </nav>
           <div style="position: relative; justify-self: center;">
-          <button onClick="{{ toggleLang }}" aria-label="Change language" style="display: inline-flex; align-items: center; gap: 6px; background: none; cursor: pointer; font-size: 15px; font-weight: 600; padding: 4px 2px; color: {{ navColor }};">
+          <button onClick="{{ toggleLang }}" aria-label="Change language" data-lang-toggle="1" style="display: inline-flex; align-items: center; gap: 6px; background: none; cursor: pointer; font-size: 15px; font-weight: 600; padding: 4px 2px; color: {{ navColor }};">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
             <span>{{ langLabel }}</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
@@ -152,7 +152,7 @@ class Component extends DCLogic {
     window.addEventListener('resize', this.onR);
     this.onS();
     document.documentElement.lang = this.state.lang;
-    this.onDoc = (e) => { if (this.state.langOpen && !e.target.closest('[aria-label="Change language"]') ) this.setState({ langOpen: false }); };
+    this.onDoc = (e) => { if (this.state.langOpen && !e.target.closest('[data-lang-toggle]') ) this.setState({ langOpen: false }); };
     document.addEventListener('click', this.onDoc);
   }
   componentWillUnmount() {
