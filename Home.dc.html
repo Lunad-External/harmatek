@@ -196,7 +196,7 @@ input:focus,textarea:focus{outline:none;border-color:#014995 !important;box-shad
                 </div>
                 <div>
                   <p style="font-size: 14px; line-height: 20px; color: #55657a;" data-ar="{{ it.label_ar }}">{{ it.label }}</p>
-                  <p style="color: #0f1f33; font-weight: 500;"><span data-ar="{{ it.value_ar }}" style="direction: ltr; unicode-bidi: isolate; display: inline-block;">{{ it.value }}</span></p>
+                  <p style="color: #0f1f33; font-weight: 500;"><span data-ar="{{ it.value_ar }}" style="direction: {{ it.dir }}; unicode-bidi: {{ it.bidi }}; display: inline-block;">{{ it.shown }}</span></p>
                 </div>
               </a>
 </sc-for></sc-if>
@@ -244,7 +244,7 @@ class Component extends DCLogic {
   state = { w: window.innerWidth, slide: 0, hp: -1, sending: false, toast: null };
   componentDidMount() {
     if (!window.HT_CMS) this.cmsPoll = setInterval(() => { if (window.HT_CMS) { clearInterval(this.cmsPoll); this.forceUpdate(); } }, 30);
-    this.onCms = () => this.forceUpdate(); window.addEventListener('ht-cms', this.onCms);
+    this.onCms = () => this.forceUpdate(); window.addEventListener('ht-cms', this.onCms); window.addEventListener('ht-lang', this.onCms);
     this.onR = () => this.setState({ w: window.innerWidth });
     window.addEventListener('resize', this.onR);
     this.t = setInterval(() => this.setState(s => ({ slide: (s.slide + 1) % Math.max(1, L2('home.heroSlides').length) })), 5000);
@@ -299,7 +299,7 @@ class Component extends DCLogic {
       btnMb: lg ? '12px' : '0',
       whyItems: L('home.whyItems').map((it, i) => ({ ...it, icon: ic('whyItems', i) })),
       aboutStats: L('home.aboutStats').map((it, i) => ({ ...it, icon: ic('aboutStats', i) })),
-      contactItems: L('home.contactItems').map((it, i) => ({ ...it, icon: ic('contactItems', i) })),
+      contactItems: L('home.contactItems').map((it, i) => { const arPh = (localStorage.getItem('ht-lang') || 'en') === 'ar' && /^tel:/.test(it.href || ''); return { ...it, icon: ic('contactItems', i), shown: arPh ? '+' + String(it.value || '').replace(/\D/g, '').replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]) : it.value, dir: arPh ? 'rtl' : 'ltr', bidi: arPh ? 'bidi-override' : 'isolate' }; }),
       brochures: L('brochures.items').map(b => ({ title: b.title, title_ar: b.title_ar, image: b.image, download: b.pdf })),
 
       products,
