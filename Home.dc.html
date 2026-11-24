@@ -299,7 +299,7 @@ class Component extends DCLogic {
       btnMb: lg ? '12px' : '0',
       whyItems: L('home.whyItems').map((it, i) => ({ ...it, icon: ic('whyItems', i) })),
       aboutStats: L('home.aboutStats').map((it, i) => ({ ...it, icon: ic('aboutStats', i) })),
-      contactItems: L('home.contactItems').map((it, i) => { const arPh = (localStorage.getItem('ht-lang') || 'en') === 'ar' && /^tel:/.test(it.href || ''); return { ...it, icon: ic('contactItems', i), shown: arPh ? '+' + String(it.value || '').replace(/\D/g, '').replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]) : it.value, dir: arPh ? 'rtl' : 'ltr', bidi: arPh ? 'bidi-override' : 'isolate' }; }),
+      contactItems: L('home.contactItems').map((it, i) => ({ ...it, icon: ic('contactItems', i), shown: it.value, dir: 'ltr', bidi: 'isolate' })),
       brochures: L('brochures.items').map(b => ({ title: b.title, title_ar: b.title_ar, image: b.image, download: b.pdf })),
 
       products,

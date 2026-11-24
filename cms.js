@@ -45,7 +45,7 @@
       contactIntro: 'Contact us today to discuss how our solutions can transform your operations.',
       contactInfoTitle: 'Contact Information',
       contactInfoText: 'Our team is ready to help you find the perfect safety solution for your material handling operations.',
-      contactItems: [{ label: 'Email', value: 'sm@harmtek.sa', href: 'mailto:sm@harmtek.sa' }, { label: 'Phone', value: '+966 55 947 1701', href: 'tel:+966559471701' }, { label: 'Location', value: 'Riyadh, KSA', href: '#' }]
+      contactItems: [{ label: 'Email', value: 'sm@harmtek.sa', href: 'mailto:sm@harmtek.sa' }, { label: 'Phone', value: '00966 55 947 1701', href: 'tel:00966559471701' }, { label: 'Location', value: 'Riyadh, KSA', href: '#' }]
     },
     products: {
       bannerTitle: 'Our',
@@ -82,7 +82,7 @@
       image: IMG + 'contact-page.jpg',
       cardTitle: 'Harma Tek',
       tagline: 'Specialized in maintaining machine production lines and installing electronic cards',
-      phones: [{ number: '+966 55 947 1701' }, { number: '+966 57 308 2441' }, { number: '+966 53 286 8525' }],
+      phones: [{ number: '00966 55 947 1701' }],
       email: 'sm@harmatek.sa',
       location: 'Riyadh, KSA',
       locationsTitle: 'Our',
